@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C501EB36364002F3332 /* AppDelegate.swift */; };
-		1F149C531EB36364002F3332 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C521EB36364002F3332 /* FirstViewController.swift */; };
-		1F149C551EB36364002F3332 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C541EB36364002F3332 /* SecondViewController.swift */; };
+		1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C521EB36364002F3332 /* NewsViewController.swift */; };
+		1F149C551EB36364002F3332 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C541EB36364002F3332 /* ChatViewController.swift */; };
 		1F149C581EB36364002F3332 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C561EB36364002F3332 /* Main.storyboard */; };
-		1F149C5A1EB36364002F3332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C591EB36364002F3332 /* Assets.xcassets */; };
 		1F149C5D1EB36364002F3332 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C5B1EB36364002F3332 /* LaunchScreen.storyboard */; };
+		1F149C651EB366E8002F3332 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C641EB366E8002F3332 /* ThirdViewController.swift */; };
+		1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C661EB36B0E002F3332 /* SettingsViewController.swift */; };
+		1F149C691EB37265002F3332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C681EB37265002F3332 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F149C4D1EB36364002F3332 /* Tifosi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tifosi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F149C501EB36364002F3332 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F149C521EB36364002F3332 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		1F149C541EB36364002F3332 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		1F149C521EB36364002F3332 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		1F149C541EB36364002F3332 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		1F149C571EB36364002F3332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1F149C591EB36364002F3332 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F149C5C1EB36364002F3332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F149C5E1EB36364002F3332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F149C641EB366E8002F3332 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		1F149C661EB36B0E002F3332 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1F149C681EB37265002F3332 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +61,13 @@
 			isa = PBXGroup;
 			children = (
 				1F149C501EB36364002F3332 /* AppDelegate.swift */,
-				1F149C521EB36364002F3332 /* FirstViewController.swift */,
-				1F149C541EB36364002F3332 /* SecondViewController.swift */,
+				1F149C521EB36364002F3332 /* NewsViewController.swift */,
+				1F149C541EB36364002F3332 /* ChatViewController.swift */,
+				1F149C641EB366E8002F3332 /* ThirdViewController.swift */,
+				1F149C661EB36B0E002F3332 /* SettingsViewController.swift */,
 				1F149C561EB36364002F3332 /* Main.storyboard */,
-				1F149C591EB36364002F3332 /* Assets.xcassets */,
 				1F149C5B1EB36364002F3332 /* LaunchScreen.storyboard */,
+				1F149C681EB37265002F3332 /* Assets.xcassets */,
 				1F149C5E1EB36364002F3332 /* Info.plist */,
 			);
 			path = Tifosi;
@@ -128,7 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F149C5D1EB36364002F3332 /* LaunchScreen.storyboard in Resources */,
-				1F149C5A1EB36364002F3332 /* Assets.xcassets in Resources */,
+				1F149C691EB37265002F3332 /* Assets.xcassets in Resources */,
 				1F149C581EB36364002F3332 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,9 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F149C551EB36364002F3332 /* SecondViewController.swift in Sources */,
+				1F149C551EB36364002F3332 /* ChatViewController.swift in Sources */,
 				1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */,
-				1F149C531EB36364002F3332 /* FirstViewController.swift in Sources */,
+				1F149C651EB366E8002F3332 /* ThirdViewController.swift in Sources */,
+				1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */,
+				1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +316,7 @@
 				1F149C631EB36364002F3332 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
