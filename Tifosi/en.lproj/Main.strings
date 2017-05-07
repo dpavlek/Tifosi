@@ -1,0 +1,18 @@
+
+/* Class = "UITabBarItem"; title = "Events"; ObjectID = "GM5-1O-vDD"; */
+"GM5-1O-vDD.title" = "Events";
+
+/* Class = "UITabBarItem"; title = "News"; ObjectID = "NCL-Oz-Myd"; */
+"NCL-Oz-Myd.title" = "News";
+
+/* Class = "UILabel"; text = "Loaded by SecondViewController"; ObjectID = "NDk-cv-Gan"; */
+"NDk-cv-Gan.text" = "Loaded by SecondViewController";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "PVz-1e-yxL"; */
+"PVz-1e-yxL.title" = "Settings";
+
+/* Class = "UITabBarItem"; title = "Chat"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Chat";
+
+/* Class = "UILabel"; text = "Second View"; ObjectID = "zEq-FU-wV5"; */
+"zEq-FU-wV5.text" = "Second View";

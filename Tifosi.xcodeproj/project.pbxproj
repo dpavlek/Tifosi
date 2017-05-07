@@ -12,7 +12,7 @@
 		1F149C551EB36364002F3332 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C541EB36364002F3332 /* ChatViewController.swift */; };
 		1F149C581EB36364002F3332 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C561EB36364002F3332 /* Main.storyboard */; };
 		1F149C5D1EB36364002F3332 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C5B1EB36364002F3332 /* LaunchScreen.storyboard */; };
-		1F149C651EB366E8002F3332 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C641EB366E8002F3332 /* ThirdViewController.swift */; };
+		1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C641EB366E8002F3332 /* EventsViewController.swift */; };
 		1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C661EB36B0E002F3332 /* SettingsViewController.swift */; };
 		1F149C691EB37265002F3332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C681EB37265002F3332 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -25,9 +25,10 @@
 		1F149C571EB36364002F3332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F149C5C1EB36364002F3332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F149C5E1EB36364002F3332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F149C641EB366E8002F3332 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		1F149C641EB366E8002F3332 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		1F149C661EB36B0E002F3332 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1F149C681EB37265002F3332 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F2CBD501EBF521600E4FA68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +64,7 @@
 				1F149C501EB36364002F3332 /* AppDelegate.swift */,
 				1F149C521EB36364002F3332 /* NewsViewController.swift */,
 				1F149C541EB36364002F3332 /* ChatViewController.swift */,
-				1F149C641EB366E8002F3332 /* ThirdViewController.swift */,
+				1F149C641EB366E8002F3332 /* EventsViewController.swift */,
 				1F149C661EB36B0E002F3332 /* SettingsViewController.swift */,
 				1F149C561EB36364002F3332 /* Main.storyboard */,
 				1F149C5B1EB36364002F3332 /* LaunchScreen.storyboard */,
@@ -148,7 +149,7 @@
 			files = (
 				1F149C551EB36364002F3332 /* ChatViewController.swift in Sources */,
 				1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */,
-				1F149C651EB366E8002F3332 /* ThirdViewController.swift in Sources */,
+				1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */,
 				1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */,
 				1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */,
 			);
@@ -161,6 +162,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1F149C571EB36364002F3332 /* Base */,
+				1F2CBD501EBF521600E4FA68 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
