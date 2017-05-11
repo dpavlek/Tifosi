@@ -12,6 +12,7 @@ class NewsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "F1 News"
         // Do any additional setup after loading the view, typically from a nib.
     }
 
