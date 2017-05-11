@@ -1,18 +1,18 @@
 //
-//  ThirdViewController.swift
+//  AddEventViewController.swift
 //  Tifosi
 //
-//  Created by Daniel Pavlekovic on 28/04/2017.
+//  Created by Daniel Pavlekovic on 11/05/2017.
 //  Copyright © 2017 Daniel Pavlekovic. All rights reserved.
 //
 
 import UIKit
 
-class EventsViewController: UITableViewController {
+class AddEventViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title="Events"
+        title="Add Event"
         // Do any additional setup after loading the view.
     }
 

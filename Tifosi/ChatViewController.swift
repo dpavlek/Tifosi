@@ -7,17 +7,31 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet weak var labelChat: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        labelChat.text = FacebookUser.fbUser?.firstName ?? "Second View"
         // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBOutlet weak var startChatBtn: UIButton!
+    override func viewWillAppear(_ animated: Bool) {
+        labelChat.text = FacebookUser.fbUser?.firstName ?? "Second View"
+        if(FacebookUser.fbUser?.loggedIn != nil && FacebookUser.fbUser?.loggedIn==true){
+            startChatBtn.isEnabled = true
+        }
+        else{
+            startChatBtn.isEnabled = false
+        }
     }
 
 

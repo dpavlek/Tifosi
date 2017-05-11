@@ -7,5 +7,11 @@ target 'Tifosi' do
 
   # Pods for Tifosi
 pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/Messaging'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
 
 end

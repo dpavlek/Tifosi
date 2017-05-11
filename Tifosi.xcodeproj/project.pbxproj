@@ -15,6 +15,9 @@
 		1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C641EB366E8002F3332 /* EventsViewController.swift */; };
 		1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C661EB36B0E002F3332 /* SettingsViewController.swift */; };
 		1F149C691EB37265002F3332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C681EB37265002F3332 /* Assets.xcassets */; };
+		1FBF96661EC4B834000C43F7 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF96651EC4B834000C43F7 /* AddEventViewController.swift */; };
+		1FBF96681EC4C05E000C43F7 /* FacebookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF96671EC4C05E000C43F7 /* FacebookUser.swift */; };
+		5E26DAEF09E09286E444002C /* Pods_Tifosi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503C5074BEDB478FD3E4954 /* Pods_Tifosi.framework */; };
 		62B6A6041EC452580014B246 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62B6A6031EC452580014B246 /* GoogleService-Info.plist */; };
 		62EA73FD1EC43AFD000BB4EF /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA73FC1EC43AFD000BB4EF /* Article.swift */; };
 		62EA73FF1EC441B0000BB4EF /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA73FE1EC441B0000BB4EF /* ArticleTableViewCell.swift */; };
@@ -32,9 +35,15 @@
 		1F149C661EB36B0E002F3332 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1F149C681EB37265002F3332 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F2CBD501EBF521600E4FA68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		1FBF96651EC4B834000C43F7 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		1FBF96671EC4C05E000C43F7 /* FacebookUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookUser.swift; sourceTree = "<group>"; };
+		1FBF96711EC4EBDD000C43F7 /* Tifosi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tifosi.entitlements; sourceTree = "<group>"; };
 		62B6A6031EC452580014B246 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		62BA7A53A2D40CFBA72A0139 /* Pods-Tifosi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tifosi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tifosi/Pods-Tifosi.debug.xcconfig"; sourceTree = "<group>"; };
 		62EA73FC1EC43AFD000BB4EF /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		62EA73FE1EC441B0000BB4EF /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		7503C5074BEDB478FD3E4954 /* Pods_Tifosi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tifosi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0F3483F3028875B88E022B1 /* Pods-Tifosi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tifosi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tifosi/Pods-Tifosi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E26DAEF09E09286E444002C /* Pods_Tifosi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +63,8 @@
 			children = (
 				1F149C4F1EB36364002F3332 /* Tifosi */,
 				1F149C4E1EB36364002F3332 /* Products */,
+				FBA27B6C0458F6543946E6A0 /* Pods */,
+				E05E14C765C16DEBB6109F0F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,20 +79,88 @@
 		1F149C4F1EB36364002F3332 /* Tifosi */ = {
 			isa = PBXGroup;
 			children = (
+				1FBF96711EC4EBDD000C43F7 /* Tifosi.entitlements */,
 				1F149C501EB36364002F3332 /* AppDelegate.swift */,
-				1F149C521EB36364002F3332 /* NewsViewController.swift */,
-				1F149C541EB36364002F3332 /* ChatViewController.swift */,
-				1F149C641EB366E8002F3332 /* EventsViewController.swift */,
-				1F149C661EB36B0E002F3332 /* SettingsViewController.swift */,
+				1FBF966A1EC4C074000C43F7 /* Controller */,
+				1FBF96691EC4C068000C43F7 /* Model */,
 				1F149C561EB36364002F3332 /* Main.storyboard */,
 				1F149C5B1EB36364002F3332 /* LaunchScreen.storyboard */,
 				1F149C681EB37265002F3332 /* Assets.xcassets */,
 				1F149C5E1EB36364002F3332 /* Info.plist */,
 				62B6A6031EC452580014B246 /* GoogleService-Info.plist */,
-				62EA73FC1EC43AFD000BB4EF /* Article.swift */,
-				62EA73FE1EC441B0000BB4EF /* ArticleTableViewCell.swift */,
 			);
 			path = Tifosi;
+			sourceTree = "<group>";
+		};
+		1FBF96691EC4C068000C43F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FBF96671EC4C05E000C43F7 /* FacebookUser.swift */,
+				62EA73FC1EC43AFD000BB4EF /* Article.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1FBF966A1EC4C074000C43F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FBF966C1EC4C0A1000C43F7 /* NewsController */,
+				1FBF966E1EC4C0B6000C43F7 /* ChatController */,
+				1FBF966B1EC4C086000C43F7 /* EventsController */,
+				1FBF966D1EC4C0AD000C43F7 /* SettingsController */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1FBF966B1EC4C086000C43F7 /* EventsController */ = {
+			isa = PBXGroup;
+			children = (
+				1F149C641EB366E8002F3332 /* EventsViewController.swift */,
+				1FBF96651EC4B834000C43F7 /* AddEventViewController.swift */,
+			);
+			name = EventsController;
+			sourceTree = "<group>";
+		};
+		1FBF966C1EC4C0A1000C43F7 /* NewsController */ = {
+			isa = PBXGroup;
+			children = (
+				1F149C521EB36364002F3332 /* NewsViewController.swift */,
+				62EA73FE1EC441B0000BB4EF /* ArticleTableViewCell.swift */,
+			);
+			name = NewsController;
+			sourceTree = "<group>";
+		};
+		1FBF966D1EC4C0AD000C43F7 /* SettingsController */ = {
+			isa = PBXGroup;
+			children = (
+				1F149C661EB36B0E002F3332 /* SettingsViewController.swift */,
+			);
+			name = SettingsController;
+			sourceTree = "<group>";
+		};
+		1FBF966E1EC4C0B6000C43F7 /* ChatController */ = {
+			isa = PBXGroup;
+			children = (
+				1F149C541EB36364002F3332 /* ChatViewController.swift */,
+			);
+			name = ChatController;
+			sourceTree = "<group>";
+		};
+		E05E14C765C16DEBB6109F0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7503C5074BEDB478FD3E4954 /* Pods_Tifosi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBA27B6C0458F6543946E6A0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				62BA7A53A2D40CFBA72A0139 /* Pods-Tifosi.debug.xcconfig */,
+				B0F3483F3028875B88E022B1 /* Pods-Tifosi.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,9 +170,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F149C611EB36364002F3332 /* Build configuration list for PBXNativeTarget "Tifosi" */;
 			buildPhases = (
+				177A61D2A3300371EFD07090 /* [CP] Check Pods Manifest.lock */,
 				1F149C491EB36364002F3332 /* Sources */,
 				1F149C4A1EB36364002F3332 /* Frameworks */,
 				1F149C4B1EB36364002F3332 /* Resources */,
+				6BEA604777A050274351A080 /* [CP] Embed Pods Frameworks */,
+				39E9CC8A814CF176BA0385CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -117,6 +200,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = KZ7LVBES5H;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -152,16 +240,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		177A61D2A3300371EFD07090 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		39E9CC8A814CF176BA0385CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tifosi/Pods-Tifosi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BEA604777A050274351A080 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tifosi/Pods-Tifosi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1F149C491EB36364002F3332 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1F149C551EB36364002F3332 /* ChatViewController.swift in Sources */,
+				1FBF96661EC4B834000C43F7 /* AddEventViewController.swift in Sources */,
 				1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */,
 				62EA73FD1EC43AFD000BB4EF /* Article.swift in Sources */,
 				1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */,
 				1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */,
+				1FBF96681EC4C05E000C43F7 /* FacebookUser.swift in Sources */,
 				62EA73FF1EC441B0000BB4EF /* ArticleTableViewCell.swift in Sources */,
 				1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */,
 			);
@@ -287,8 +425,10 @@
 		};
 		1F149C621EB36364002F3332 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62BA7A53A2D40CFBA72A0139 /* Pods-Tifosi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Tifosi/Tifosi.entitlements;
 				DEVELOPMENT_TEAM = KZ7LVBES5H;
 				INFOPLIST_FILE = Tifosi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -300,8 +440,10 @@
 		};
 		1F149C631EB36364002F3332 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0F3483F3028875B88E022B1 /* Pods-Tifosi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Tifosi/Tifosi.entitlements;
 				DEVELOPMENT_TEAM = KZ7LVBES5H;
 				INFOPLIST_FILE = Tifosi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
