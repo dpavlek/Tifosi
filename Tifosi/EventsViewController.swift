@@ -21,6 +21,10 @@ class EventsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func returnToEvents(from segue: UIStoryboardSegue){
+        
+    }
+    
 
     /*
     // MARK: - Navigation

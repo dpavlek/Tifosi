@@ -6,64 +6,84 @@
 //  Copyright © 2017 Daniel Pavlekovic. All rights reserved.
 //
 
-import UIKit
-
-@objc protocol XMLParserDelegate{
-    func parsingWasFinished()
-}
+import Foundation
 
 class aXMLParser: NSObject, XMLParserDelegate {
-    var delegate: XMLParserDelegate?
-    var arrayParsedData = [Dictionary<String,String>]()
-    var currentDataDictionary = Dictionary<String,String>()
-    var currentElement = ""
-    var foundChars = ""
     
-    func startParsingXML(rssURL: NSURL){
-        let parser = XMLParser(contentsOf: rssURL as URL)
-        parser?.delegate = self as? XMLParserDelegate
-        parser?.parse()
+    var ArticleElement = Article()
+    
+        var parser = XMLParser()
+        var feeds = NSMutableArray()
+        var elements = NSMutableDictionary()
+        var element = NSString()
+        var ftitle = NSMutableString()
+        var link = NSMutableString()
+        var fdescription = NSMutableString()
+        var fdate = NSMutableString()
+    
+    func initWithUrl(_ url: URL)->AnyObject{
+        startParse(url)
+        return self
     }
+    
+    func startParse(_ url :URL){
+        feeds=[]
+        parser = XMLParser(contentsOf: url)!
+        parser.delegate = self
+        parser.shouldProcessNamespaces=false
+        parser.shouldReportNamespacePrefixes = false
+        parser.shouldResolveExternalEntities = false
+        parser.parse()
+    }
+    
+    func allFeeds() -> NSMutableArray{
+        return feeds
+    }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        
-        currentElement = elementName
-        
+        element = elementName as NSString
+        if (element as NSString).isEqual(to: "item"){
+            elements = NSMutableDictionary()
+            elements = [:]
+            ArticleElement.name=""
+            ArticleElement.link=""
+            ArticleElement.description=""
+            ArticleElement.date=""
+            }
+        }
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if(elementName as NSString).isEqual(to: "item"){
+            if ArticleElement.name != ""{
+                elements.setObject(ArticleElement.name, forKey: "title" as NSCopying)
+            }
+            if ArticleElement.link != ""{
+                elements.setObject(ArticleElement.link, forKey: "link" as NSCopying)
+            }
+            if ArticleElement.description != ""{
+                elements.setObject(ArticleElement.description, forKey: "description" as NSCopying)
+            }
+            if ArticleElement.date != ""{
+                elements.setObject(ArticleElement.date, forKey: "pubDate" as NSCopying)
+            }
+            feeds.add(elements)
+        }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if(currentElement == "title" && currentElement != "Appcoda") || currentElement == "link" || currentElement == "pubDate"{
-            foundChars += string
+        if element.isEqual(to: "title"){
+            ArticleElement.name.append(string)
         }
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if !foundChars.isEmpty{
-            if elementName == "link"{
-                foundChars = (foundChars as NSString).substring(from: 3)
+        else if element.isEqual(to: "link"){
+            ArticleElement.link.append(string)
         }
-        
-            currentDataDictionary[currentElement] = foundChars
-            
-            foundChars = ""
-            
-            if currentElement == "pubDate"{
-                arrayParsedData.append(currentDataDictionary)
-            }
+        else if element.isEqual(to: "description"){
+            ArticleElement.description.append(string)
         }
-    }
-    
-    func parserDidEndDocument(parser: XMLParser){
-        delegate?.parsingWasFinished()
-    }
-    
-    func parsingWasFinished() {
-    }
-    
-    func parser(parser: XMLParser, parseErrorOccurred parseError: NSError!){
-        print(parseError.description)
-    }
-    
-    func parser(parser: XMLParser, validationErrorOccurred validationError: NSError!){
-        print(validationError.description)
+        else if element.isEqual(to: "pubDate"){
+            ArticleElement.date.append(string)
+        }
     }
 }
+
+    
+

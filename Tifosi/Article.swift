@@ -8,22 +8,25 @@
 
 import UIKit
 
-class Article{
+struct Article{
     
-    var photo: UIImage?
-    var name: String
-    var description: String
+    var name = NSMutableString()
+    var description = NSMutableString()
+    var link = NSMutableString()
+    var date = NSMutableString()
     
-    init?(name: String, photo: UIImage?, description: String) {
-        
-        guard (!name.isEmpty && !description.isEmpty) else {
-            return nil
-        }
+    init?(name: String, description: String, link: String, date: String) {
         
         // Initialize stored properties.
-        self.name = name
-        self.photo = photo
-        self.description = description
-        
+        self.name = name as! NSMutableString
+        self.description = description as! NSMutableString
+        self.link = link as! NSMutableString
+        self.date = date as! NSMutableString
+    }
+    init(){
+        self.name=""
+        self.description=""
+        self.link=""
+        self.date=""
     }
 }
