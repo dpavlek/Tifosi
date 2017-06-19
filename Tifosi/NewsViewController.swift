@@ -20,7 +20,12 @@ class NewsViewController: UITableViewController, XMLParserDelegate {
         tableView.estimatedRowHeight = 140
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.loadData()
+        DispatchQueue.global(qos: .background).async {
+            self.loadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
         title = "News"
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -33,7 +38,6 @@ class NewsViewController: UITableViewController, XMLParserDelegate {
     func loadRSS(_ data: URL){
         let myParser: aXMLParser = aXMLParser().initWithUrl(data) as! aXMLParser
         ArticleFeed = myParser.feeds
-        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

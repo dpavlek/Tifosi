@@ -11,14 +11,21 @@ import MapKit
 
 class AddEventViewController: UITableViewController {
 
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var descField: UITextField!
+    @IBOutlet weak var placeField: UITextField!
     @IBOutlet weak var EventLocationMap: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameField.becomeFirstResponder()
         title="Add Event"
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
         gestureRecognizer.delegate=self as? UIGestureRecognizerDelegate
         EventLocationMap.addGestureRecognizer(gestureRecognizer)
         // Do any additional setup after loading the view.
+    }
+    @IBAction func AddToDatabase(_ sender: UIBarButtonItem) {
+        
     }
     
     func handleTap(gestureRecognizer: UILongPressGestureRecognizer){

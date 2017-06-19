@@ -26,7 +26,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var startChatBtn: UIButton!
     override func viewWillAppear(_ animated: Bool) {
         labelChat.text = FacebookUser.fbUser?.firstName ?? "Second View"
-        if(FacebookUser.fbUser?.loggedIn != nil && FacebookUser.fbUser?.loggedIn==true){
+        if(FBSDKAccessToken.current() != nil){
             startChatBtn.isEnabled = true
         }
         else{

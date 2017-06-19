@@ -16,12 +16,12 @@ class FacebookUser{
     var firstName: String?
     var lastName: String?
     var eMail: String?
-    var userID: String = FBSDKAccessToken.current().userID as String
+    var userID: String?
     var userPhotoURL: String?
-    var loggedIn: Bool? = nil
+    var loggedIn: Bool?
     
     private init?() {
-        if(FBSDKAccessToken.current().userID != nil){
+        if(FBSDKAccessToken.current() != nil){
             self.loggedIn=true
             setUserData()
         }

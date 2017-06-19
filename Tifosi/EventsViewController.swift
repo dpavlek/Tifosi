@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class EventsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title="Events"
+        let ref = FIRDatabase.database().reference(withPath: "events")
+        navigationItem.rightBarButtonItem?.isEnabled = false
         // Do any additional setup after loading the view.
     }
 

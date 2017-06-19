@@ -245,7 +245,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K3d-Ai-U34">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="K3d-Ai-U34">
                                                     <rect key="frame" x="0.0" y="7" width="375" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -357,12 +357,16 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Wd9-y0-36k">
                             <connections>
+                                <action selector="AddToDatabase:" destination="GZI-h6-V4l" id="cZC-vb-Y62"/>
                                 <segue destination="IJc-8t-YF8" kind="unwind" unwindAction="returnToEventsFrom:" id="qpm-Qa-9NU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="EventLocationMap" destination="MHu-dE-FbV" id="Vsl-6d-Ksw"/>
+                        <outlet property="descField" destination="eaa-5q-ivd" id="exh-9r-sUq"/>
+                        <outlet property="nameField" destination="K3d-Ai-U34" id="oK4-yK-mK0"/>
+                        <outlet property="placeField" destination="XQv-jP-WZC" id="wym-pf-WAq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LMv-y6-quN" userLabel="First Responder" sceneMemberID="firstResponder"/>
