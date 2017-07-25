@@ -11,7 +11,7 @@ import FBSDKLoginKit
 
 class NewsViewController: UITableViewController, XMLParserDelegate {
     
-    var ArticleFeed: NSArray = []
+    var ArticleFeed: [Article] = []
     var url: URL!
 
     override func viewDidLoad() {
@@ -31,13 +31,15 @@ class NewsViewController: UITableViewController, XMLParserDelegate {
     }
     
     func loadData(){
-        url = URL(string: "http://en.espnf1.com/rss/motorsport/story/feeds/296.xml?type=2")!
+        url = URL(string: "http://www.autosport.com/rss/f1news.xml")!
         loadRSS(url)
     }
     
     func loadRSS(_ data: URL){
         let myParser: aXMLParser = aXMLParser().initWithUrl(data) as! aXMLParser
         ArticleFeed = myParser.feeds
+        print(ArticleFeed)
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,7 +57,10 @@ class NewsViewController: UITableViewController, XMLParserDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath)
-        cell.textLabel?.text = (ArticleFeed.object(at: indexPath.row) as AnyObject).object(forKey: "title") as? String
+        
+        let article = ArticleFeed[indexPath.row]
+        
+        cell.textLabel?.text = article.
         cell.detailTextLabel?.text = (ArticleFeed.object(at:indexPath.row) as AnyObject).object(forKey:"description") as? String
         return cell
     }

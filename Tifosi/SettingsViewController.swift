@@ -73,8 +73,8 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         let accessToken = FBSDKAccessToken.current()
         guard let accessTokenString = accessToken?.tokenString else{return}
         
-        let FIRCredentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
-        FIRAuth.auth()?.signIn(with: FIRCredentials, completion: {(user,error) in
+        let FIRCredentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+        Auth.auth().signIn(with: FIRCredentials, completion: {(user,error) in
             if error != nil{
                 print("Error occured with Firebase authentication:",error ?? "Unknown error")
                 return

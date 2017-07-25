@@ -8,25 +8,28 @@
 
 import UIKit
 
-struct Article{
+struct Article {
     
-    var name = NSMutableString()
-    var description = NSMutableString()
-    var link = NSMutableString()
-    var date = NSMutableString()
+    var name: String
+    var description: String
+    var link: String
+    var guid: String
+    var date: Date
     
-    init?(name: String, description: String, link: String, date: String) {
+    init(name: String, description: String, link: String, guid: String, date: Date) {
         
-        // Initialize stored properties.
-        self.name = name as! NSMutableString
-        self.description = description as! NSMutableString
-        self.link = link as! NSMutableString
-        self.date = date as! NSMutableString
+        self.name = name
+        self.description = description
+        self.link = link
+        self.guid = guid
+        self.date = date
     }
-    init(){
-        self.name=""
-        self.description=""
-        self.link=""
-        self.date=""
+    
+    init() {
+        self.name = ""
+        self.description = ""
+        self.link = ""
+        self.date = Date()
+        self.guid = ""
     }
 }
