@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		0E403EBB1F29D6AE0003E5AB /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */; };
 		0E403EBF1F29E95E0003E5AB /* RaceCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */; };
+		0E403EC11F2A154F0003E5AB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EC01F2A154F0003E5AB /* ChatViewController.swift */; };
+		0E403EC41F2A22FF0003E5AB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EC31F2A22FF0003E5AB /* Constants.swift */; };
 		0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */; };
 		1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C501EB36364002F3332 /* AppDelegate.swift */; };
 		1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C521EB36364002F3332 /* NewsViewController.swift */; };
-		1F149C551EB36364002F3332 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C541EB36364002F3332 /* ChatViewController.swift */; };
+		1F149C551EB36364002F3332 /* ChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C541EB36364002F3332 /* ChatScreenViewController.swift */; };
 		1F149C581EB36364002F3332 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C561EB36364002F3332 /* Main.storyboard */; };
 		1F149C5D1EB36364002F3332 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C5B1EB36364002F3332 /* LaunchScreen.storyboard */; };
 		1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C641EB366E8002F3332 /* EventsViewController.swift */; };
@@ -28,11 +30,14 @@
 /* Begin PBXFileReference section */
 		0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceCalendar.swift; sourceTree = "<group>"; };
+		0E403EC01F2A154F0003E5AB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		0E403EC21F2A16E70003E5AB /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		0E403EC31F2A22FF0003E5AB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFetcher.swift; sourceTree = "<group>"; };
 		1F149C4D1EB36364002F3332 /* Tifosi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tifosi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F149C501EB36364002F3332 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F149C521EB36364002F3332 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		1F149C541EB36364002F3332 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		1F149C541EB36364002F3332 /* ChatScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenViewController.swift; sourceTree = "<group>"; };
 		1F149C571EB36364002F3332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F149C5C1EB36364002F3332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F149C5E1EB36364002F3332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 		1F149C441EB36364002F3332 = {
 			isa = PBXGroup;
 			children = (
+				0E403EC21F2A16E70003E5AB /* Bridging-Header.h */,
 				1F149C4F1EB36364002F3332 /* Tifosi */,
 				1F149C4E1EB36364002F3332 /* Products */,
 				FBA27B6C0458F6543946E6A0 /* Pods */,
@@ -103,6 +109,7 @@
 				62EA73FC1EC43AFD000BB4EF /* Article.swift */,
 				0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */,
 				0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */,
+				0E403EC31F2A22FF0003E5AB /* Constants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -147,7 +154,8 @@
 		1FBF966E1EC4C0B6000C43F7 /* ChatController */ = {
 			isa = PBXGroup;
 			children = (
-				1F149C541EB36364002F3332 /* ChatViewController.swift */,
+				1F149C541EB36364002F3332 /* ChatScreenViewController.swift */,
+				0E403EC01F2A154F0003E5AB /* ChatViewController.swift */,
 			);
 			name = ChatController;
 			sourceTree = "<group>";
@@ -299,16 +307,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F149C551EB36364002F3332 /* ChatViewController.swift in Sources */,
+				1F149C551EB36364002F3332 /* ChatScreenViewController.swift in Sources */,
 				1FBF96661EC4B834000C43F7 /* AddEventViewController.swift in Sources */,
 				1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */,
 				62EA73FD1EC43AFD000BB4EF /* Article.swift in Sources */,
 				1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */,
 				0E403EBB1F29D6AE0003E5AB /* ArticleTableViewCell.swift in Sources */,
 				0E403EBF1F29E95E0003E5AB /* RaceCalendar.swift in Sources */,
+				0E403EC41F2A22FF0003E5AB /* Constants.swift in Sources */,
 				1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */,
 				1FBF96681EC4C05E000C43F7 /* FacebookUser.swift in Sources */,
 				0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */,
+				0E403EC11F2A154F0003E5AB /* ChatViewController.swift in Sources */,
 				1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +452,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = daniel.pavlekovic.ferit.hr.Tifosi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -457,6 +468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = daniel.pavlekovic.ferit.hr.Tifosi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
