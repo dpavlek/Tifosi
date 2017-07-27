@@ -29,7 +29,6 @@ class NewsViewController: UITableViewController {
     }
     
     @IBAction func refreshTable(_ sender: UIBarButtonItem) {
-        print(articleArray ?? 0)
         loadData(urlToLoad: url)
     }
     

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E403EBB1F29D6AE0003E5AB /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */; };
-		0E403EBD1F29E0E80003E5AB /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBC1F29E0E80003E5AB /* ArticleViewController.swift */; };
+		0E403EBF1F29E95E0003E5AB /* RaceCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */; };
 		0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */; };
 		1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C501EB36364002F3332 /* AppDelegate.swift */; };
 		1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C521EB36364002F3332 /* NewsViewController.swift */; };
@@ -27,7 +27,7 @@
 
 /* Begin PBXFileReference section */
 		0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
-		0E403EBC1F29E0E80003E5AB /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceCalendar.swift; sourceTree = "<group>"; };
 		0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFetcher.swift; sourceTree = "<group>"; };
 		1F149C4D1EB36364002F3332 /* Tifosi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tifosi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F149C501EB36364002F3332 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +102,7 @@
 				1FBF96671EC4C05E000C43F7 /* FacebookUser.swift */,
 				62EA73FC1EC43AFD000BB4EF /* Article.swift */,
 				0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */,
+				0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -129,7 +130,6 @@
 		1FBF966C1EC4C0A1000C43F7 /* NewsController */ = {
 			isa = PBXGroup;
 			children = (
-				0E403EBC1F29E0E80003E5AB /* ArticleViewController.swift */,
 				1F149C521EB36364002F3332 /* NewsViewController.swift */,
 				0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */,
 			);
@@ -304,8 +304,8 @@
 				1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */,
 				62EA73FD1EC43AFD000BB4EF /* Article.swift in Sources */,
 				1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */,
-				0E403EBD1F29E0E80003E5AB /* ArticleViewController.swift in Sources */,
 				0E403EBB1F29D6AE0003E5AB /* ArticleTableViewCell.swift in Sources */,
+				0E403EBF1F29E95E0003E5AB /* RaceCalendar.swift in Sources */,
 				1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */,
 				1FBF96681EC4C05E000C43F7 /* FacebookUser.swift in Sources */,
 				0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */,

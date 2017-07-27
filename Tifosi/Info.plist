@@ -51,27 +51,27 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb203326633507564</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>203326633507564</string>
-    <key>FacebookDisplayName</key>
-    <string>Tifosi</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>fbapi</string>
-        <string>fb-messenger-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
-    </array>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Photos are needed for chat, so others can see who is texting them</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb203326633507564</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>203326633507564</string>
+	<key>FacebookDisplayName</key>
+	<string>Tifosi</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photos are needed for chat, so others can see who is texting them</string>
 </dict>
 </plist>

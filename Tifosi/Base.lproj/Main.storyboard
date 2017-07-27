@@ -23,39 +23,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="labelChat" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="83" y="313" width="210" height="42"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="80" y="363" width="215" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0r-JW-VjS">
-                                <rect key="frame" x="170" y="436" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0r-JW-VjS">
+                                <rect key="frame" x="153" y="449" width="70" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HI8-vV-lgS"/>
+                                    <constraint firstAttribute="width" constant="70" id="mNR-h7-xaY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <segue destination="efe-65-9YX" kind="show" id="SuN-PE-pK2"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session not in progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UQ-fb-DsW">
+                                <rect key="frame" x="39" y="135" width="297" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="roZ-Ak-EkJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbJ-Gr-mkO">
+                                <rect key="frame" x="123" y="207" width="129" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstItem="9UQ-fb-DsW" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="71" id="3bH-DE-AFN"/>
+                            <constraint firstItem="9UQ-fb-DsW" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="23" id="8dP-IF-AWg"/>
+                            <constraint firstItem="tbJ-Gr-mkO" firstAttribute="centerX" secondItem="i0r-JW-VjS" secondAttribute="centerX" id="IFE-Ck-qU1"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="i0r-JW-VjS" secondAttribute="bottom" constant="139" id="Xk4-ug-Zy9"/>
+                            <constraint firstItem="tbJ-Gr-mkO" firstAttribute="top" secondItem="9UQ-fb-DsW" secondAttribute="bottom" constant="8" symbolic="YES" id="YGL-Zt-JFx"/>
+                            <constraint firstItem="9UQ-fb-DsW" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="t0w-r1-8NB"/>
+                            <constraint firstItem="9UQ-fb-DsW" firstAttribute="centerX" secondItem="tbJ-Gr-mkO" secondAttribute="centerX" id="v1b-FK-kWL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="uC0-If-sfg"/>
                     <connections>
-                        <outlet property="labelChat" destination="zEq-FU-wV5" id="Z4a-0H-mRJ"/>
+                        <outlet property="chatLabel" destination="9UQ-fb-DsW" id="Dh9-ES-fta"/>
+                        <outlet property="descLabel" destination="tbJ-Gr-mkO" id="5HM-mN-WJI"/>
                         <outlet property="startChatBtn" destination="i0r-JW-VjS" id="yL9-s3-Dmw"/>
                     </connections>
                 </viewController>
