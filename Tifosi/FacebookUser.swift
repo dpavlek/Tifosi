@@ -43,7 +43,7 @@ class FacebookUser {
             self.eMail = userInfo?["email"] as? String
             self.userPhotoURL = userPhotoURLtemp
             self.userID = (userInfo?["id"] as? String)!
-            print(result ?? "Facebook person details")
+            print(result ?? "Facebook person details missing!")
         }
     }
     

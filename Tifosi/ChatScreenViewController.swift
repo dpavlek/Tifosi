@@ -14,15 +14,11 @@ class ChatScreenViewController: UIViewController {
     @IBOutlet weak var chatLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
 
-    private var raceCalendar: RaceCalendar?
-
-    private let racesUrl = URL(string: "https://ergast.com/api/f1/current.json")!
-
     override func viewDidLoad() {
 
         super.viewDidLoad()
         if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
-            descLabel.text = "Welcome " + facebookUserFirstName + "!"
+            self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
         }
         //        MARK: This should work but doesn't.
         //        let fetcher = Fetcher()
@@ -42,27 +38,21 @@ class ChatScreenViewController: UIViewController {
         //        }
 
         //        MARK: This works! Commented because of testing.
-        //        DispatchQueue.global().async {
-        //            let racesData = try? Data(contentsOf: self.racesUrl)
-        //            self.raceCalendar = RaceCalendar(json: racesData!)
-        //            DispatchQueue.main.async {
-        //                if let racesUnwrapped = self.raceCalendar?.races {
-        //                    for race in racesUnwrapped {
-        //
-        //                        let calendarCurrent = Calendar.current
-        //                        let dateCurrent = calendarCurrent.date(byAdding: .hour, value: 2, to: Date())
-        //
-        //                        if (race.date == Date()) || (race.date == dateCurrent) {
-        //                            self.startChatBtn.isEnabled = true
-        //                            self.chatLabel.text = race.raceName
-        //                        } else {
-        //                            self.startChatBtn.isEnabled = false
-        //                            self.chatLabel.text = "Session not in progress"
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
+        
+        if let racesUnwrapped = RaceCalendar.f1Calendar?.races {
+            for race in racesUnwrapped {
+                let calendarCurrent = Calendar.current
+                let dateCurrent = calendarCurrent.date(byAdding: .hour, value: 2, to: Date())
+
+                if (race.date == Date()) || (race.date == dateCurrent) {
+                    self.startChatBtn.isEnabled = true
+                    self.chatLabel.text = race.raceName
+                } else {
+                    self.startChatBtn.isEnabled = false
+                    self.chatLabel.text = "Session not in progress"
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,11 +61,13 @@ class ChatScreenViewController: UIViewController {
 
     @IBOutlet weak var startChatBtn: UIButton!
     override func viewWillAppear(_ animated: Bool) {
-        descLabel.text = FacebookUser.fbUser?.firstName ?? "F1 Chat"
+        if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
+            self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
+        }
         if FBSDKAccessToken.current() != nil {
-            startChatBtn.isEnabled = true
+            self.startChatBtn.isEnabled = true
         } else {
-            startChatBtn.isEnabled = false
+            self.startChatBtn.isEnabled = false
         }
     }
 }

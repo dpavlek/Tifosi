@@ -92,7 +92,11 @@
                                 <action selector="dismissChat:" destination="efe-65-9YX" id="d8R-rO-yP5"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="F6n-CD-W72"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="F6n-CD-W72">
+                            <connections>
+                                <action selector="refreshChat:" destination="efe-65-9YX" id="jLF-a8-ulI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZw-yj-SWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

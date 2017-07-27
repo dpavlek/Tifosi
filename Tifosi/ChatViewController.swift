@@ -46,6 +46,11 @@ class ChatViewController: JSQMessagesViewController {
         loadMessages()
     }
     
+    @IBAction func refreshChat(_ sender: Any) {
+        chatMessages = []
+        loadMessages()
+    }
+    
     private func loadMessages(){
         
         let query = Constants.refs.databaseChats.queryLimited(toLast: 10)

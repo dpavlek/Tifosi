@@ -10,8 +10,11 @@ import Foundation
 import Firebase
 
 struct Constants {
+    
     struct refs {
         static let databaseRoot = Database.database().reference()
         static let databaseChats = databaseRoot.child("chats")
     }
+    
+    let f1CalendarUrl = URL(string: "https://ergast.com/api/f1/current.json")!
 }
