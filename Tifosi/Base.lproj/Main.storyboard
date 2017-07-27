@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -135,15 +136,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ArticleTableViewCell" rowHeight="90" id="DVq-Ea-YBt">
-                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ArticleTableViewCell" rowHeight="100" id="DVq-Ea-YBt" customClass="ArticleTableViewCell" customModule="Tifosi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DVq-Ea-YBt" id="ytT-LK-xkz">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pirelli: Raikkonen's British GP puncture caused by external damage" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOn-r7-kZf">
+                                            <rect key="frame" x="8" y="0.0" width="257" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="27" id="efV-8W-wTa"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5y-AB-AGr">
+                                            <rect key="frame" x="8" y="27" width="257" height="65"/>
+                                            <string key="text">Pirelli has concluded that Kimi Raikkonen's tyre problem at the British Grand Prix was caused by external damage rather than any structural or wear issues</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-07-26 17:42:03" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXx-Ld-t45">
+                                            <rect key="frame" x="273" y="0.0" width="69" height="43"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="69" id="wxX-kd-Y3C"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="R5y-AB-AGr" secondAttribute="bottom" constant="-0.5" id="6We-AB-nuU"/>
+                                        <constraint firstItem="tOn-r7-kZf" firstAttribute="top" secondItem="ytT-LK-xkz" secondAttribute="top" id="B7c-nZ-Jxs"/>
+                                        <constraint firstItem="tOn-r7-kZf" firstAttribute="leading" secondItem="R5y-AB-AGr" secondAttribute="leading" id="ESE-22-1D6"/>
+                                        <constraint firstItem="xXx-Ld-t45" firstAttribute="leading" secondItem="R5y-AB-AGr" secondAttribute="trailing" constant="8" symbolic="YES" id="IkV-4R-G57"/>
+                                        <constraint firstAttribute="trailing" secondItem="xXx-Ld-t45" secondAttribute="trailing" id="NPO-Fn-ZxS"/>
+                                        <constraint firstItem="tOn-r7-kZf" firstAttribute="leading" secondItem="ytT-LK-xkz" secondAttribute="leadingMargin" id="QwP-4O-qdp"/>
+                                        <constraint firstItem="R5y-AB-AGr" firstAttribute="top" secondItem="tOn-r7-kZf" secondAttribute="bottom" id="XcP-ZX-RrD"/>
+                                        <constraint firstItem="tOn-r7-kZf" firstAttribute="firstBaseline" secondItem="xXx-Ld-t45" secondAttribute="firstBaseline" id="hAK-Te-ipb"/>
+                                        <constraint firstItem="xXx-Ld-t45" firstAttribute="leading" secondItem="tOn-r7-kZf" secondAttribute="trailing" constant="8" symbolic="YES" id="uno-i8-M10"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="xXx-Ld-t45" secondAttribute="bottom" constant="48.5" id="xwp-xi-LlJ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="lnf-Zf-jI7" kind="show" id="k4d-vo-67y"/>
+                                    <outlet property="dateLabel" destination="xXx-Ld-t45" id="sYZ-id-GtC"/>
+                                    <outlet property="descLabel" destination="R5y-AB-AGr" id="HHa-Ma-v8x"/>
+                                    <outlet property="titleLabel" destination="tOn-r7-kZf" id="PFU-6b-pbV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -152,29 +194,17 @@
                             <outlet property="delegate" destination="oVf-23-k0Y" id="WF7-oA-f7I"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="9uJ-go-I6j"/>
+                    <navigationItem key="navigationItem" id="9uJ-go-I6j">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="9qT-dS-2zf">
+                            <connections>
+                                <action selector="refreshTable:" destination="oVf-23-k0Y" id="lO2-Hc-RTr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMG-Di-PvW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1704.8" y="-481.70914542728639"/>
-        </scene>
-        <!--Article View Controller-->
-        <scene sceneID="O77-vC-9d2">
-            <objects>
-                <viewController id="lnf-Zf-jI7" customClass="ArticleViewController" customModule="Tifosi" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PYU-Nz-RKy"/>
-                        <viewControllerLayoutGuide type="bottom" id="VYT-pD-SHx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3UG-4q-4t5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qPW-gg-ZK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2447" y="-482"/>
         </scene>
         <!--Events-->
         <scene sceneID="01E-9C-khv">

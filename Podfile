@@ -12,6 +12,6 @@ pod 'Firebase/Database'
 pod 'Firebase/Messaging'
 pod 'FacebookCore'
 pod 'FacebookLogin'
-pod ‘AEXML’
+pod ‘SwiftyJSON’
 
 end
