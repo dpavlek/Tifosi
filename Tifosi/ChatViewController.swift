@@ -9,10 +9,13 @@
 import UIKit
 import FBSDKLoginKit
 import JSQMessagesViewController
+import Photos
+import Firebase
 
 class ChatViewController: JSQMessagesViewController {
     
     private var chatMessages = [JSQMessage]()
+    private let imageURLNotSetKey = "NOTSET"
     
     lazy var outgoingBubble: JSQMessagesBubbleImage = {
         JSQMessagesBubbleImageFactory()!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleRed())
@@ -23,9 +26,12 @@ class ChatViewController: JSQMessagesViewController {
     }()
     
     @IBAction func dismissChat(_ sender: Any) {
-        dismiss(animated: true) {
-            
-        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func refreshChat(_ sender: Any) {
+        chatMessages = []
+        loadMessages()
     }
     
     override func viewDidLoad() {
@@ -39,19 +45,13 @@ class ChatViewController: JSQMessagesViewController {
         
         title = "F1 Chat"
         
-        inputToolbar.contentView.leftBarButtonItem = nil
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
         loadMessages()
     }
     
-    @IBAction func refreshChat(_ sender: Any) {
-        chatMessages = []
-        loadMessages()
-    }
-    
-    private func loadMessages(){
+    private func loadMessages() {
         
         let query = Constants.refs.databaseChats.queryLimited(toLast: 10)
         
@@ -79,7 +79,6 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        
         return chatMessages[indexPath.item].senderId == senderId ? outgoingBubble : incomingBubble
         
     }
@@ -103,7 +102,7 @@ class ChatViewController: JSQMessagesViewController {
         let message = [
             "sender_id": senderId,
             "name": senderDisplayName,
-            "text": text
+            "text": text,
         ]
         
         ref.setValue(message)
@@ -111,4 +110,85 @@ class ChatViewController: JSQMessagesViewController {
         finishSendingMessage()
     }
     
+    func sendPhotoMessage() -> String? {
+        let itemRef = Constants.refs.databaseChats.childByAutoId()
+        
+        let messageItem = [
+            "photoURL": imageURLNotSetKey,
+            "senderID": senderId,
+        ]
+        
+        itemRef.setValue(messageItem)
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        
+        finishSendingMessage(animated: true)
+        return itemRef.key
+    }
+    
+    func setImageUrl(_ url: String, forPhotoMessageWithKey key: String) {
+        let itemRef = Constants.refs.databaseChats.child(key)
+        itemRef.updateChildValues(["photoURL": url])
+    }
+    
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.sourceType = UIImagePickerControllerSourceType.camera
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
+}
+
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+//        MARK: Code for loading from local phone storage. Not used right now.
+//        if let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL{
+//            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
+//            let asset = assets.firstObject
+//            
+//            if let key = sendPhotoMessage(){
+//                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+//                    let imageFileUrl = contentEditingInput?.fullSizeImageURL
+//                    //TO-DO: Check "describing"
+//                    let path = "\(String(describing: Auth.auth().currentUser?.uid))/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
+//                    
+//                    Constants.refs.storage.child(path).putFile(from: imageFileUrl!, metadata: nil){ (metadata,error) in
+//                        if let error = error{
+//                            print("Error uploading photo: \(error.localizedDescription)")
+//                            return
+//                        }
+//                        
+//                        self.setImageUrl(Constants.refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+//                    }
+//                })
+//            }
+//        }
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        if let key = sendPhotoMessage() {
+            let imageData = UIImageJPEGRepresentation(image, 1.0)
+            
+            let imagePath = Auth.auth().currentUser!.uid + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+            
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            Constants.refs.storage.child(imagePath).putData(imageData!, metadata: metadata){(metadata,error) in
+                if let error = error{
+                    print("Error uploading photo: \(error)")
+                    return
+                }
+                self.setImageUrl(Constants.refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }

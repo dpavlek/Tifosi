@@ -38,7 +38,7 @@ class ChatScreenViewController: UIViewController {
         //        }
 
         //        MARK: This works! Commented because of testing.
-        
+
         if let racesUnwrapped = RaceCalendar.f1Calendar?.races {
             for race in racesUnwrapped {
                 let calendarCurrent = Calendar.current
@@ -55,19 +55,15 @@ class ChatScreenViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     @IBOutlet weak var startChatBtn: UIButton!
     override func viewWillAppear(_ animated: Bool) {
         if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
             self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
-        }
-        if FBSDKAccessToken.current() != nil {
-            self.startChatBtn.isEnabled = true
-        } else {
-            self.startChatBtn.isEnabled = false
+            if FBSDKAccessToken.current() != nil {
+                self.startChatBtn.isEnabled = true
+            } else {
+                self.startChatBtn.isEnabled = false
+            }
         }
     }
 }

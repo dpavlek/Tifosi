@@ -10,6 +10,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Messaging'
+pod 'Firebase/Storage’
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod ‘SwiftyJSON’

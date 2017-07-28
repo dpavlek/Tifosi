@@ -36,15 +36,15 @@ struct Article {
     }
 }
 
-struct Articles{
+struct Articles {
     
     var articles = [Article]()
     
-    init?(json: Data){
+    init?(json: Data) {
         
         let json = JSON(data: json)
         
-        for (_,element) in json["items"]{
+        for (_, element) in json["items"] {
             
             let title = element["title"].stringValue
             let pubDate = element["pubDate"].stringValue
@@ -61,7 +61,7 @@ struct Articles{
         
     }
     
-    func getCount() -> Int{
-        return articles.count
+    func getCount() -> Int {
+        return self.articles.count
     }
 }

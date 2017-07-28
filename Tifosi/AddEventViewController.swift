@@ -18,22 +18,22 @@ class AddEventViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameField.becomeFirstResponder()
-        title="Add Event"
+        title = "Add Event"
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
-        gestureRecognizer.delegate=self as? UIGestureRecognizerDelegate
+        gestureRecognizer.delegate = self as? UIGestureRecognizerDelegate
         EventLocationMap.addGestureRecognizer(gestureRecognizer)
         // Do any additional setup after loading the view.
     }
     @IBAction func AddToDatabase(_ sender: UIBarButtonItem) {
-        
+
     }
-    
-    func handleTap(gestureRecognizer: UILongPressGestureRecognizer){
+
+    func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
         let location = gestureRecognizer.location(in: EventLocationMap)
-        let coordinate = EventLocationMap.convert(location,toCoordinateFrom:EventLocationMap)
-        
+        let coordinate = EventLocationMap.convert(location, toCoordinateFrom: EventLocationMap)
+
         let annotation = MKPointAnnotation()
-        annotation.coordinate=coordinate
+        annotation.coordinate = coordinate
         EventLocationMap.addAnnotation(annotation)
     }
 
@@ -41,7 +41,7 @@ class AddEventViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }

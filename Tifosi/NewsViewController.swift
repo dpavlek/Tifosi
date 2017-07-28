@@ -56,7 +56,7 @@ class NewsViewController: UITableViewController {
         let articleUrlString = articleArray?.articles[indexPath.row].link
         let articleUrl = URL(string: articleUrlString!)
         
-        UIApplication.shared.open(articleUrl ?? backupURL, options: [:]) { (Bool) in
+        UIApplication.shared.open(articleUrl ?? backupURL, options: [:]) { _ in
         }
     }
     
@@ -77,5 +77,4 @@ class NewsViewController: UITableViewController {
         
         return cell
     }
-    
 }
