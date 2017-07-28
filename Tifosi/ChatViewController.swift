@@ -15,6 +15,7 @@ import Firebase
 class ChatViewController: JSQMessagesViewController {
     
     private var chatMessages = [JSQMessage]()
+    private var photoMessageMap = [String: JSQPhotoMediaItem]()
     private let imageURLNotSetKey = "NOTSET"
     
     lazy var outgoingBubble: JSQMessagesBubbleImage = {
@@ -140,34 +141,70 @@ class ChatViewController: JSQMessagesViewController {
         present(picker, animated: true, completion: nil)
     }
     
+    private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
+        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
+            chatMessages.append(message)
+            
+            if mediaItem.image == nil {
+                photoMessageMap[key] = mediaItem
+            }
+            
+            collectionView.reloadData()
+        }
+    }
+    
+    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?){
+        let storageRef = Storage.storage().reference(forURL: photoURL)
+        
+        storageRef.getData(maxSize: INT64_MAX) { (data, error) in
+            if let error = error {
+                print("Error downloading image data: \(error)")
+                return
+            }
+            
+            storageRef.getMetadata(completion: { (metadata, metadataErr) in
+                if let error = metadataErr{
+                    print("Error downloading metadata: \(error)")
+                    return
+                }
+                
+                if(metadata?.contentType == "image/gif"){
+                    mediaItem.image = UIImage.init(data: data!)
+                }
+                else{
+                    mediaItem.image = UIImage.init
+                }
+            })
+        }
+    }
 }
 
-extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         picker.dismiss(animated: true, completion: nil)
         
-//        MARK: Code for loading from local phone storage. Not used right now.
-//        if let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL{
-//            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
-//            let asset = assets.firstObject
-//            
-//            if let key = sendPhotoMessage(){
-//                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
-//                    let imageFileUrl = contentEditingInput?.fullSizeImageURL
-//                    //TO-DO: Check "describing"
-//                    let path = "\(String(describing: Auth.auth().currentUser?.uid))/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
-//                    
-//                    Constants.refs.storage.child(path).putFile(from: imageFileUrl!, metadata: nil){ (metadata,error) in
-//                        if let error = error{
-//                            print("Error uploading photo: \(error.localizedDescription)")
-//                            return
-//                        }
-//                        
-//                        self.setImageUrl(Constants.refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
-//                    }
-//                })
-//            }
-//        }
+        //        MARK: Code for loading from local phone storage. Not used right now.
+        //        if let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL{
+        //            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
+        //            let asset = assets.firstObject
+        //
+        //            if let key = sendPhotoMessage(){
+        //                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+        //                    let imageFileUrl = contentEditingInput?.fullSizeImageURL
+        //                    //TO-DO: Check "describing"
+        //                    let path = "\(String(describing: Auth.auth().currentUser?.uid))/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
+        //
+        //                    Constants.refs.storage.child(path).putFile(from: imageFileUrl!, metadata: nil){ (metadata,error) in
+        //                        if let error = error{
+        //                            print("Error uploading photo: \(error.localizedDescription)")
+        //                            return
+        //                        }
+        //
+        //                        self.setImageUrl(Constants.refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+        //                    }
+        //                })
+        //            }
+        //        }
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         if let key = sendPhotoMessage() {
@@ -178,8 +215,8 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
-            Constants.refs.storage.child(imagePath).putData(imageData!, metadata: metadata){(metadata,error) in
-                if let error = error{
+            Constants.refs.storage.child(imagePath).putData(imageData!, metadata: metadata) { metadata, error in
+                if let error = error {
                     print("Error uploading photo: \(error)")
                     return
                 }
