@@ -424,7 +424,7 @@
                                 <action selector="cancel:" destination="GZI-h6-V4l" id="pOo-tj-SPR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Wd9-y0-36k">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Wd9-y0-36k">
                             <connections>
                                 <action selector="addEventToDatabase:" destination="GZI-h6-V4l" id="P7y-7G-CS6"/>
                             </connections>
@@ -483,7 +483,6 @@
         <!--Settings-->
         <scene sceneID="2Uv-IM-Kyt">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ixW-JA-rB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gsb-pu-EZK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="PVz-1e-yxL"/>
                     <toolbarItems/>
@@ -496,6 +495,7 @@
                         <segue destination="Miq-Yx-6h1" kind="relationship" relationship="rootViewController" id="s6V-ua-MTU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ixW-JA-rB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2.3999999999999999" y="752.47376311844084"/>
         </scene>

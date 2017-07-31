@@ -39,20 +39,6 @@ class ChatScreenViewController: UIViewController {
 
         //        MARK: This works! Commented because of testing.
 
-        if let racesUnwrapped = RaceCalendar.f1Calendar?.races {
-            for race in racesUnwrapped {
-                let calendarCurrent = Calendar.current
-                let dateCurrent = calendarCurrent.date(byAdding: .hour, value: 2, to: Date())
-
-                if (race.date == Date()) || (race.date == dateCurrent) {
-                    self.startChatBtn.isEnabled = true
-                    self.chatLabel.text = race.raceName
-                } else {
-                    self.startChatBtn.isEnabled = false
-                    self.chatLabel.text = "Session not in progress"
-                }
-            }
-        }
     }
 
     @IBOutlet weak var startChatBtn: UIButton!
@@ -63,6 +49,21 @@ class ChatScreenViewController: UIViewController {
                 self.startChatBtn.isEnabled = true
             } else {
                 self.startChatBtn.isEnabled = false
+            }
+        }
+        
+        if let racesUnwrapped = RaceCalendar.f1Calendar?.races {
+            for race in racesUnwrapped {
+                let calendarCurrent = Calendar.current
+                let dateCurrent = calendarCurrent.date(byAdding: .hour, value: 2, to: Date())
+                
+                if (race.date == Date()) || (race.date == dateCurrent) {
+                    self.startChatBtn.isEnabled = true
+                    self.chatLabel.text = race.raceName
+                } else {
+                    self.startChatBtn.isEnabled = false
+                    self.chatLabel.text = "Session not in progress"
+                }
             }
         }
     }

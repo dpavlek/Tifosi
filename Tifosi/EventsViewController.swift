@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 import FBSDKLoginKit
 
 class EventsViewController: UITableViewController {
