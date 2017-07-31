@@ -12,6 +12,7 @@
 		0E403EC11F2A154F0003E5AB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EC01F2A154F0003E5AB /* ChatViewController.swift */; };
 		0E403EC41F2A22FF0003E5AB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EC31F2A22FF0003E5AB /* Constants.swift */; };
 		0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */; };
+		0EAF7FF21F2F6BFB00EE1914 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF7FF11F2F6BFB00EE1914 /* Event.swift */; };
 		1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C501EB36364002F3332 /* AppDelegate.swift */; };
 		1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C521EB36364002F3332 /* NewsViewController.swift */; };
 		1F149C551EB36364002F3332 /* ChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C541EB36364002F3332 /* ChatScreenViewController.swift */; };
@@ -34,6 +35,9 @@
 		0E403EC21F2A16E70003E5AB /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		0E403EC31F2A22FF0003E5AB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFetcher.swift; sourceTree = "<group>"; };
+		0EAF7FEF1F2F3E7900EE1914 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Main.strings; sourceTree = "<group>"; };
+		0EAF7FF01F2F3E7900EE1914 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0EAF7FF11F2F6BFB00EE1914 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1F149C4D1EB36364002F3332 /* Tifosi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tifosi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F149C501EB36364002F3332 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F149C521EB36364002F3332 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */,
 				0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */,
 				0E403EC31F2A22FF0003E5AB /* Constants.swift */,
+				0EAF7FF11F2F6BFB00EE1914 /* Event.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 				1FBF96681EC4C05E000C43F7 /* FacebookUser.swift in Sources */,
 				0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */,
 				0E403EC11F2A154F0003E5AB /* ChatViewController.swift in Sources */,
+				0EAF7FF21F2F6BFB00EE1914 /* Event.swift in Sources */,
 				1F149C531EB36364002F3332 /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +337,7 @@
 			children = (
 				1F149C571EB36364002F3332 /* Base */,
 				1F2CBD501EBF521600E4FA68 /* en */,
+				0EAF7FEF1F2F3E7900EE1914 /* hr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -339,6 +346,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1F149C5C1EB36364002F3332 /* Base */,
+				0EAF7FF01F2F3E7900EE1914 /* hr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -350,6 +358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -401,6 +410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -454,6 +464,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -470,6 +481,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

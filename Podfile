@@ -14,6 +14,8 @@ pod 'Firebase/Storage’
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod ‘SwiftyJSON’
+pod ‘SwiftLint’
 pod ‘JSQMessagesViewController'
+pod ‘SwiftGifOrigin’
 
 end

@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import JSQMessagesViewController
 import Photos
 import Firebase
+import SwiftGifOrigin
 
 class ChatViewController: JSQMessagesViewController {
     
@@ -54,7 +55,7 @@ class ChatViewController: JSQMessagesViewController {
     
     private func loadMessages() {
         
-        let query = Constants.refs.databaseChats.queryLimited(toLast: 10)
+        let query = Constants.Refs.databaseChats.queryLimited(toLast: 10)
         
         _ = query.observe(.childAdded, with: { [weak self] snapshot in
             if let data = snapshot.value as? [String: String],
@@ -64,7 +65,6 @@ class ChatViewController: JSQMessagesViewController {
                 !text.isEmpty {
                 if let message = JSQMessage(senderId: id, displayName: name, text: text) {
                     self?.chatMessages.append(message)
-                    
                     self?.finishReceivingMessage()
                 }
             }
@@ -98,7 +98,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        let ref = Constants.refs.databaseChats.childByAutoId()
+        let ref = Constants.Refs.databaseChats.childByAutoId()
         
         let message = [
             "sender_id": senderId,
@@ -112,7 +112,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func sendPhotoMessage() -> String? {
-        let itemRef = Constants.refs.databaseChats.childByAutoId()
+        let itemRef = Constants.Refs.databaseChats.childByAutoId()
         
         let messageItem = [
             "photoURL": imageURLNotSetKey,
@@ -128,7 +128,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func setImageUrl(_ url: String, forPhotoMessageWithKey key: String) {
-        let itemRef = Constants.refs.databaseChats.child(key)
+        let itemRef = Constants.Refs.databaseChats.child(key)
         itemRef.updateChildValues(["photoURL": url])
     }
     
@@ -153,27 +153,31 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
-    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?){
+    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
         let storageRef = Storage.storage().reference(forURL: photoURL)
         
-        storageRef.getData(maxSize: INT64_MAX) { (data, error) in
+        storageRef.getData(maxSize: INT64_MAX) { data, error in
             if let error = error {
                 print("Error downloading image data: \(error)")
                 return
             }
             
-            storageRef.getMetadata(completion: { (metadata, metadataErr) in
-                if let error = metadataErr{
+            storageRef.getMetadata(completion: { metadata, metadataErr in
+                if let error = metadataErr {
                     print("Error downloading metadata: \(error)")
                     return
                 }
+                if metadata?.contentType == "image/gif" {
+                    mediaItem.image = UIImage.gif(data: data!)
+                } else {
+                    mediaItem.image = UIImage(data: data!)
+                }
+                self.collectionView.reloadData()
                 
-                if(metadata?.contentType == "image/gif"){
-                    mediaItem.image = UIImage.init(data: data!)
+                guard key != nil else {
+                    return
                 }
-                else{
-                    mediaItem.image = UIImage.init
-                }
+                self.photoMessageMap.removeValue(forKey: key!)
             })
         }
     }
@@ -205,6 +209,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         //                })
         //            }
         //        }
+        
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         if let key = sendPhotoMessage() {
@@ -215,12 +220,12 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
-            Constants.refs.storage.child(imagePath).putData(imageData!, metadata: metadata) { metadata, error in
+            Constants.Refs.storage.child(imagePath).putData(imageData!, metadata: metadata) { metadata, error in
                 if let error = error {
                     print("Error uploading photo: \(error)")
                     return
                 }
-                self.setImageUrl(Constants.refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+                self.setImageUrl(Constants.Refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
             }
         }
     }

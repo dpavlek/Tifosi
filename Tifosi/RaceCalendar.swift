@@ -20,15 +20,12 @@ class RaceCalendar {
     
     static let f1Calendar = RaceCalendar()
     
-    private let constants = Constants()
-    
     var races = [Race]()
     
     private init?() {
         
         DispatchQueue.global().async {
-            let f1CalendarData = try? Data(contentsOf: self.constants.f1CalendarUrl)
-            
+            let f1CalendarData = try? Data(contentsOf: Constants.f1CalendarUrl)
             DispatchQueue.main.async {
                 var json = JSON(f1CalendarData!)
                 
@@ -48,9 +45,7 @@ class RaceCalendar {
                     
                     self.races.append(Race(season: season, raceName: name, position: (latitude: latitude, longitude: longitude), date: dateFormatted!))
                 }
-                
             }
         }
-        
     }
 }

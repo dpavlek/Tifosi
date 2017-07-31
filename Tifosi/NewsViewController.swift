@@ -23,8 +23,6 @@ class NewsViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        title = "News"
-        
         loadData(urlToLoad: url)
     }
     
@@ -45,10 +43,6 @@ class NewsViewController: UITableViewController {
             self?.articleArray = Articles(json: jsonData)
             self?.tableView.reloadData()
         }*/
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -16,15 +16,9 @@ struct Article {
     var link: String
     var guid: String
     var date: Date
-    
-    init(name: String, description: String, link: String, guid: String, date: Date) {
-        
-        self.name = name
-        self.description = description
-        self.link = link
-        self.guid = guid
-        self.date = date
-    }
+}
+
+extension Article {
     
     init() {
         

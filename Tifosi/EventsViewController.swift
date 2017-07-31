@@ -8,16 +8,26 @@
 
 import UIKit
 import FirebaseDatabase
+import FBSDKLoginKit
 
 class EventsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Events"
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        if FacebookChecker.checkFacebookLogin() {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewWillAppear(_ animated: Bool) {
+        if (FacebookUser.fbUser?.firstName) != nil {
+            if FBSDKAccessToken.current() != nil {
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        }
     }
 }

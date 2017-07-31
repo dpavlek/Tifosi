@@ -12,14 +12,14 @@ import Firebase
 
 class FacebookUser {
     static let fbUser = FacebookUser()
-    
+
     var firstName: String?
     var lastName: String?
     var eMail: String?
     var userID: String?
     var userPhotoURL: String?
     var loggedIn: Bool?
-    
+
     private init?() {
         if FBSDKAccessToken.current() != nil {
             self.loggedIn = true
@@ -28,10 +28,9 @@ class FacebookUser {
             self.loggedIn = false
         }
     }
-    
+
     func setUserData() {
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id,first_name, last_name,picture.type(large),email"]).start {
-            _, result, err in
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id,first_name, last_name,picture.type(large),email"]).start { _, result, err in
             if err != nil {
                 print("failed to start graph request:", err ?? "Unknown error")
                 return
@@ -46,5 +45,16 @@ class FacebookUser {
             print(result ?? "Facebook person details missing!")
         }
     }
-    
+}
+
+class FacebookChecker {
+    static func checkFacebookLogin() -> Bool {
+        if (FacebookUser.fbUser?.firstName) != nil {
+            print("true")
+            return true
+        } else {
+            print("false")
+            return false
+        }
+    }
 }

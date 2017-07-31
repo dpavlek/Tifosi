@@ -8,52 +8,50 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class AddEventViewController: UITableViewController {
 
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var descField: UITextField!
+    @IBOutlet weak var descField: UITextView!
     @IBOutlet weak var placeField: UITextField!
-    @IBOutlet weak var EventLocationMap: MKMapView!
+    @IBOutlet weak var eventLocationMap: MKMapView!
+    @IBOutlet weak var eventDatePicker: UIDatePicker!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        eventLocationMap.delegate = self as? MKMapViewDelegate
         nameField.becomeFirstResponder()
         title = "Add Event"
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
         gestureRecognizer.delegate = self as? UIGestureRecognizerDelegate
-        EventLocationMap.addGestureRecognizer(gestureRecognizer)
-        // Do any additional setup after loading the view.
+        eventLocationMap.addGestureRecognizer(gestureRecognizer)
     }
-    @IBAction func AddToDatabase(_ sender: UIBarButtonItem) {
 
+    @IBAction func addEventToDatabase(_ sender: Any) {
+        let ref = Constants.Refs.databaseEvents.childByAutoId()
+
+        let message = [
+            "name": nameField.text ?? "nil",
+            "placeName": placeField.text ?? "nil",
+            "description": descField.text ?? "nil",
+            "date": eventDatePicker.date.description
+        ]
+
+        ref.setValue(message)
+        dismiss(animated: true, completion: nil)
     }
 
     func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
-        let location = gestureRecognizer.location(in: EventLocationMap)
-        let coordinate = EventLocationMap.convert(location, toCoordinateFrom: EventLocationMap)
-
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        EventLocationMap.addAnnotation(annotation)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        if gestureRecognizer.state != UIGestureRecognizerState.began { return
+        }
+        let touchLocation = gestureRecognizer.location(in: eventLocationMap)
+        let locationCoordinate = eventLocationMap.convert(touchLocation, toCoordinateFrom: eventLocationMap)
+        print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
     }
 
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

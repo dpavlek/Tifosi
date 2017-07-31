@@ -1,3 +1,50 @@
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "9Pf-2V-p7j"; */
+"9Pf-2V-p7j.title" = "Settings";
+
+/* Class = "UILabel"; text = "Session not in progress"; ObjectID = "9UQ-fb-DsW"; */
+"9UQ-fb-DsW.text" = "Session Not In Progress";
+
+/* Class = "UITabBarItem"; title = "Events"; ObjectID = "GM5-1O-vDD"; */
+"GM5-1O-vDD.title" = "Events";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "K3d-Ai-U34"; */
+"K3d-Ai-U34.placeholder" = "Name";
+
+/* Class = "UITabBarItem"; title = "News"; ObjectID = "NCL-Oz-Myd"; */
+"NCL-Oz-Myd.title" = "News";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "PVz-1e-yxL"; */
+"PVz-1e-yxL.title" = "Settings";
+
+/* Class = "UILabel"; text = "Pirelli has concluded that Kimi Raikkonen's tyre problem at the British Grand Prix was caused by external damage rather than any structural or wear issues"; ObjectID = "R5y-AB-AGr"; */
+"R5y-AB-AGr.text" = "Pirelli has concluded that Kimi Raikkonen's tyre problem at the British Grand Prix was caused by external damage rather than any structural or wear issues";
+
+/* Class = "UITextField"; placeholder = "Place"; ObjectID = "XQv-jP-WZC"; */
+"XQv-jP-WZC.placeholder" = "Place";
+
+/* Class = "UITabBarItem"; title = "Chat"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Chat";
+
+/* Class = "UITextField"; placeholder = "Description"; ObjectID = "eaa-5q-ivd"; */
+"eaa-5q-ivd.placeholder" = "Description";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "i0r-JW-VjS"; */
+"i0r-JW-VjS.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Pirelli: Raikkonen's British GP puncture caused by external damage"; ObjectID = "tOn-r7-kZf"; */
+"tOn-r7-kZf.text" = "Pirelli: Raikkonen's British GP puncture caused by external damage";
+
+/* Class = "UILabel"; text = "Welcome!"; ObjectID = "tbJ-Gr-mkO"; */
+"tbJ-Gr-mkO.text" = "Dobro Došli!";
+
+/* Class = "UINavigationItem"; title = "Chat"; ObjectID = "uC0-If-sfg"; */
+"uC0-If-sfg.title" = "Chat";
+
+/* Class = "UINavigationItem"; title = "Events"; ObjectID = "vty-TD-8ea"; */
+"vty-TD-8ea.title" = "Events";
+
+/* Class = "UILabel"; text = "2017-07-26 17:42:03"; ObjectID = "xXx-Ld-t45"; */
+"xXx-Ld-t45.text" = "2017-07-26 17:42:03";
 
 /* Class = "UITabBarItem"; title = "Events"; ObjectID = "GM5-1O-vDD"; */
 "GM5-1O-vDD.title" = "Events";
@@ -16,3 +63,6 @@
 
 /* Class = "UILabel"; text = "Second View"; ObjectID = "zEq-FU-wV5"; */
 "zEq-FU-wV5.text" = "Second View";
+
+/* Title for News Bar */
+"newsTitle" = "News"
