@@ -52,7 +52,7 @@ class ChatScreenViewController: UIViewController {
             }
         }
         
-        if let racesUnwrapped = RaceCalendar.f1Calendar?.races {
+        /*if let racesUnwrapped = RaceCalendar.f1Calendar?.races {
             for race in racesUnwrapped {
                 let calendarCurrent = Calendar.current
                 let dateCurrent = calendarCurrent.date(byAdding: .hour, value: 2, to: Date())
@@ -65,6 +65,6 @@ class ChatScreenViewController: UIViewController {
                     self.chatLabel.text = "Session not in progress"
                 }
             }
-        }
+        }*/
     }
 }

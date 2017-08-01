@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E214A011F3072E90096274B /* Pods_Tifosi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503C5074BEDB478FD3E4954 /* Pods_Tifosi.framework */; };
+		0E214A621F3087C90096274B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E214A611F3087C90096274B /* EventTableViewCell.swift */; };
 		0E403EBB1F29D6AE0003E5AB /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */; };
 		0E403EBF1F29E95E0003E5AB /* RaceCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */; };
 		0E403EC11F2A154F0003E5AB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EC01F2A154F0003E5AB /* ChatViewController.swift */; };
@@ -23,12 +25,12 @@
 		1F149C691EB37265002F3332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F149C681EB37265002F3332 /* Assets.xcassets */; };
 		1FBF96661EC4B834000C43F7 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF96651EC4B834000C43F7 /* AddEventViewController.swift */; };
 		1FBF96681EC4C05E000C43F7 /* FacebookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF96671EC4C05E000C43F7 /* FacebookUser.swift */; };
-		5E26DAEF09E09286E444002C /* Pods_Tifosi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503C5074BEDB478FD3E4954 /* Pods_Tifosi.framework */; };
 		62B6A6041EC452580014B246 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62B6A6031EC452580014B246 /* GoogleService-Info.plist */; };
 		62EA73FD1EC43AFD000BB4EF /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA73FC1EC43AFD000BB4EF /* Article.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E214A611F3087C90096274B /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceCalendar.swift; sourceTree = "<group>"; };
 		0E403EC01F2A154F0003E5AB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E26DAEF09E09286E444002C /* Pods_Tifosi.framework in Frameworks */,
+				0E214A011F3072E90096274B /* Pods_Tifosi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +137,7 @@
 			children = (
 				1F149C641EB366E8002F3332 /* EventsViewController.swift */,
 				1FBF96651EC4B834000C43F7 /* AddEventViewController.swift */,
+				0E214A611F3087C90096274B /* EventTableViewCell.swift */,
 			);
 			name = EventsController;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				1F149C551EB36364002F3332 /* ChatScreenViewController.swift in Sources */,
 				1FBF96661EC4B834000C43F7 /* AddEventViewController.swift in Sources */,
 				1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */,
+				0E214A621F3087C90096274B /* EventTableViewCell.swift in Sources */,
 				62EA73FD1EC43AFD000BB4EF /* Article.swift in Sources */,
 				1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */,
 				0E403EBB1F29D6AE0003E5AB /* ArticleTableViewCell.swift in Sources */,

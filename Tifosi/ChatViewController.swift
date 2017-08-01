@@ -32,6 +32,10 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     @IBAction func refreshChat(_ sender: Any) {
+        reloadChatMessages()
+    }
+    
+    private func reloadChatMessages(){
         chatMessages = []
         loadMessages()
     }
@@ -50,12 +54,12 @@ class ChatViewController: JSQMessagesViewController {
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
-        loadMessages()
+        reloadChatMessages()
     }
     
     private func loadMessages() {
         
-        let query = Constants.Refs.databaseChats.queryLimited(toLast: 10)
+        let query = Constants.Refs.databaseChats.queryLimited(toLast: 30)
         
         _ = query.observe(.childAdded, with: { [weak self] snapshot in
             if let data = snapshot.value as? [String: String],
@@ -107,7 +111,6 @@ class ChatViewController: JSQMessagesViewController {
         ]
         
         ref.setValue(message)
-        
         finishSendingMessage()
     }
     

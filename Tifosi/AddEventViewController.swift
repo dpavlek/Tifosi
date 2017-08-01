@@ -37,14 +37,20 @@ class AddEventViewController: UITableViewController, MKMapViewDelegate {
 
         let latitude = String(mapLocation?.lat ?? 0)
         let longitude = String(mapLocation?.long ?? 0)
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(abbreviation: "CET")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let eventDateString = formatter.string(from: eventDatePicker.date)
 
         let message = [
             "name": nameField.text ?? "nil",
             "placeName": placeField.text ?? "nil",
             "description": descField.text ?? "nil",
-            "date": eventDatePicker.date.description,
+            "date": eventDateString,
             "latitude": latitude,
             "longitude": longitude,
+            "userID": FacebookUser.fbUser?.eMail ?? "No User",
         ]
 
         ref.setValue(message)

@@ -9,13 +9,21 @@
 import UIKit
 import SwiftyJSON
 
+private extension Date{
+    static func formatDateForRSS(input: Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: input)
+    }
+}
+
 struct Article {
     
-    var name: String
-    var description: String
-    var link: String
-    var guid: String
-    var date: Date
+    let name: String
+    let description: String
+    let link: String
+    let guid: String
+    let date: Date
 }
 
 extension Article {
