@@ -9,8 +9,8 @@
 import UIKit
 import SwiftyJSON
 
-private extension Date{
-    static func formatDateForRSS(input: Date) -> String{
+private extension Date {
+    static func formatDateForRSS(input: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         return formatter.string(from: input)
@@ -42,7 +42,7 @@ struct Articles {
     
     var articles = [Article]()
     
-    init?(json: [String:Any]) {
+    init?(json: [String: Any]) {
         
         let json = JSON(json)
         

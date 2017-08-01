@@ -18,12 +18,12 @@ class ChatScreenViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        startChatBtn.isEnabled = false
+        self.startChatBtn.isEnabled = false
         if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
             self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
             self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
@@ -33,17 +33,20 @@ class ChatScreenViewController: UIViewController {
                 self.startChatBtn.isEnabled = false
             }
         }
-        
+        // self.checkForRaceDate()
+    }
+
+    func checkForRaceDate() {
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
         if let racesUnwrapped = RaceCalendar.f1Calendar?.races {
             for race in racesUnwrapped {
-                
-                let dateCurrent = dateFormatter.string(from: Date())
-                let raceDate = dateFormatter.string(from: race.date)
-                
-                if (dateCurrent == raceDate) {
+
+                let timeToRace = race.date.timeIntervalSince1970 - Date().timeIntervalSince1970
+
+                if (timeToRace < Constants.threeDaysInSeconds) && (timeToRace > 0) {
                     self.startChatBtn.isEnabled = true
                     self.chatLabel.text = race.raceName
                 } else {

@@ -19,4 +19,5 @@ struct Constants {
     }
 
     static let f1CalendarUrl = URL(string: "https://ergast.com/api/f1/current.json")!
+    static let threeDaysInSeconds: Double = 259200
 }

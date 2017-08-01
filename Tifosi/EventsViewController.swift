@@ -17,12 +17,12 @@ class EventsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        activityIndicator.center = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
+
+        activityIndicator.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
         activityIndicator.color = UIColor.red
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
-        
+
         if FacebookChecker.checkFacebookLogin() {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
@@ -55,7 +55,7 @@ class EventsViewController: UITableViewController {
         region.center = coordinates
         region.span.latitudeDelta = 0.002
         region.span.longitudeDelta = 0.002
-        
+
         let pinPoint = MKPointAnnotation()
         pinPoint.coordinate = coordinates
         cell.eventMap.addAnnotation(pinPoint)
@@ -63,7 +63,7 @@ class EventsViewController: UITableViewController {
         cell.eventName.text = eventManager.events[indexPath.row].name
         cell.eventDesc.text = eventManager.events[indexPath.row].description
         cell.eventDate.text = eventManager.events[indexPath.row].dateTime.description
-        cell.eventMap.setRegion(region, animated: true)
+        cell.eventMap.setRegion(region, animated: false)
 
         return cell
     }
