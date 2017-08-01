@@ -11,7 +11,6 @@ import FBSDKLoginKit
 import JSQMessagesViewController
 import Photos
 import Firebase
-import SwiftGifOrigin
 
 class ChatViewController: JSQMessagesViewController {
     
@@ -181,16 +180,13 @@ class ChatViewController: JSQMessagesViewController {
                 return
             }
             
-            storageRef.getMetadata(completion: { metadata, metadataErr in
+            storageRef.getMetadata(completion: { _, metadataErr in
                 if let error = metadataErr {
                     print("Error downloading metadata: \(error)")
                     return
                 }
-                if metadata?.contentType == "image/gif" {
-                    mediaItem.image = UIImage.gif(data: data!)
-                } else {
-                    mediaItem.image = UIImage(data: data!)
-                }
+                
+                mediaItem.image = UIImage(data: data!)
                 self.collectionView.reloadData()
                 
                 guard key != nil else {

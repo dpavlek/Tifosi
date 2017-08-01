@@ -42,9 +42,9 @@ struct Articles {
     
     var articles = [Article]()
     
-    init?(json: Data) {
+    init?(json: [String:Any]) {
         
-        let json = JSON(data: json)
+        let json = JSON(json)
         
         for (_, element) in json["items"] {
             

@@ -12,10 +12,11 @@ class NewsViewController: UITableViewController {
     
     private var articleArray: Articles?
     
-    //private var eName = String()
+    // private var eName = String()
     
     private let url = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.autosport.com%2Frss%2Ffeed%2Ff1")!
     private let backupURL = URL(string: "http://hmpg.net")!
+    private let fetcher = Fetcher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +32,10 @@ class NewsViewController: UITableViewController {
     }
     
     func loadData(urlToLoad: URL) {
-        //let fetcher = Fetcher()
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: self.url)
-            self.articleArray = Articles(json: data!)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        /*fetcher.fetch(fromUrl: urlToLoad) { [weak self] jsonData in
+        fetcher.fetch(fromUrl: urlToLoad) { [weak self] jsonData in
             self?.articleArray = Articles(json: jsonData)
             self?.tableView.reloadData()
-        }*/
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
