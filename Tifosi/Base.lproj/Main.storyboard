@@ -166,23 +166,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pirelli: Raikkonen's British GP puncture caused by external damage" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOn-r7-kZf">
-                                            <rect key="frame" x="8" y="0.0" width="257" height="27"/>
+                                            <rect key="frame" x="8" y="0.0" width="257" height="38"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="27" id="efV-8W-wTa"/>
+                                                <constraint firstAttribute="height" constant="38" id="efV-8W-wTa"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5y-AB-AGr">
-                                            <rect key="frame" x="8" y="27" width="257" height="65"/>
-                                            <string key="text">Pirelli has concluded that Kimi Raikkonen's tyre problem at the British Grand Prix was caused by external damage rather than any structural or wear issues</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-07-26 17:42:03" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXx-Ld-t45">
-                                            <rect key="frame" x="273" y="0.0" width="69" height="43"/>
+                                            <rect key="frame" x="273" y="0.0" width="69" height="38"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="69" id="wxX-kd-Y3C"/>
                                             </constraints>
@@ -190,18 +183,25 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5y-AB-AGr">
+                                            <rect key="frame" x="8" y="37" width="257" height="55"/>
+                                            <string key="text">Pirelli has concluded that Kimi Raikkonen's tyre problem at the British Grand Prix was caused by external damage rather than any structural or wear issues</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="R5y-AB-AGr" secondAttribute="bottom" constant="-0.5" id="6We-AB-nuU"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="R5y-AB-AGr" secondAttribute="bottom" id="6We-AB-nuU"/>
                                         <constraint firstItem="tOn-r7-kZf" firstAttribute="top" secondItem="ytT-LK-xkz" secondAttribute="top" id="B7c-nZ-Jxs"/>
                                         <constraint firstItem="tOn-r7-kZf" firstAttribute="leading" secondItem="R5y-AB-AGr" secondAttribute="leading" id="ESE-22-1D6"/>
                                         <constraint firstItem="xXx-Ld-t45" firstAttribute="leading" secondItem="R5y-AB-AGr" secondAttribute="trailing" constant="8" symbolic="YES" id="IkV-4R-G57"/>
                                         <constraint firstAttribute="trailing" secondItem="xXx-Ld-t45" secondAttribute="trailing" id="NPO-Fn-ZxS"/>
                                         <constraint firstItem="tOn-r7-kZf" firstAttribute="leading" secondItem="ytT-LK-xkz" secondAttribute="leadingMargin" id="QwP-4O-qdp"/>
-                                        <constraint firstItem="R5y-AB-AGr" firstAttribute="top" secondItem="tOn-r7-kZf" secondAttribute="bottom" id="XcP-ZX-RrD"/>
-                                        <constraint firstItem="tOn-r7-kZf" firstAttribute="firstBaseline" secondItem="xXx-Ld-t45" secondAttribute="firstBaseline" id="hAK-Te-ipb"/>
+                                        <constraint firstItem="R5y-AB-AGr" firstAttribute="top" secondItem="tOn-r7-kZf" secondAttribute="bottom" constant="-1" id="XcP-ZX-RrD"/>
+                                        <constraint firstItem="tOn-r7-kZf" firstAttribute="firstBaseline" secondItem="xXx-Ld-t45" secondAttribute="firstBaseline" constant="3" id="hAK-Te-ipb"/>
                                         <constraint firstItem="xXx-Ld-t45" firstAttribute="leading" secondItem="tOn-r7-kZf" secondAttribute="trailing" constant="8" symbolic="YES" id="uno-i8-M10"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="xXx-Ld-t45" secondAttribute="bottom" constant="48.5" id="xwp-xi-LlJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="xXx-Ld-t45" secondAttribute="bottom" constant="54" id="xwp-xi-LlJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -263,38 +263,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="EventTableCell" rowHeight="90" id="8PX-2U-JLy" customClass="EventTableViewCell" customModule="Tifosi" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="EventTableCell" rowHeight="90" id="8PX-2U-JLy" customClass="EventTableViewCell" customModule="Tifosi" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8PX-2U-JLy" id="w4f-Xr-nmD">
-                                    <rect key="frame" x="0.0" y="0.0" width="328" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4sc-Af-HOh">
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sc-Af-HOh">
                                             <rect key="frame" x="0.0" y="-1" width="91" height="91"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="91" id="xUC-cq-WlO"/>
                                             </constraints>
                                         </mapView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Of Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbg-RK-ocv">
-                                            <rect key="frame" x="99" y="0.0" width="229" height="21"/>
+                                            <rect key="frame" x="99" y="0.0" width="243" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="cWO-Se-0Ze"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Of Event" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPf-tV-6Wd">
-                                            <rect key="frame" x="99" y="29" width="229" height="32"/>
+                                            <rect key="frame" x="99" y="29" width="243" height="32"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DD-MM-YYYY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYp-WC-a9p">
-                                            <rect key="frame" x="99" y="69" width="229" height="21"/>
+                                            <rect key="frame" x="99" y="68" width="243" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="229" id="52q-S2-Qno"/>
+                                                <constraint firstAttribute="width" constant="243" id="52q-S2-Qno"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -303,10 +303,10 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="4sc-Af-HOh" firstAttribute="centerY" secondItem="w4f-Xr-nmD" secondAttribute="centerY" id="6gM-aj-agF"/>
-                                        <constraint firstItem="eYp-WC-a9p" firstAttribute="top" secondItem="wbg-RK-ocv" secondAttribute="bottom" constant="48" id="Dd3-iT-gBX"/>
+                                        <constraint firstItem="eYp-WC-a9p" firstAttribute="top" secondItem="wbg-RK-ocv" secondAttribute="bottom" constant="47" id="Dd3-iT-gBX"/>
                                         <constraint firstItem="YPf-tV-6Wd" firstAttribute="top" secondItem="wbg-RK-ocv" secondAttribute="bottom" constant="8" symbolic="YES" id="MLo-Rb-6jp"/>
                                         <constraint firstAttribute="trailing" secondItem="wbg-RK-ocv" secondAttribute="trailing" id="RYe-58-C3K"/>
-                                        <constraint firstItem="4sc-Af-HOh" firstAttribute="bottom" secondItem="eYp-WC-a9p" secondAttribute="bottom" id="Wtw-re-OqQ"/>
+                                        <constraint firstItem="4sc-Af-HOh" firstAttribute="bottom" secondItem="eYp-WC-a9p" secondAttribute="bottom" constant="1" id="Wtw-re-OqQ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="YPf-tV-6Wd" secondAttribute="bottom" constant="21" id="aci-fK-wIG"/>
                                         <constraint firstItem="wbg-RK-ocv" firstAttribute="leading" secondItem="YPf-tV-6Wd" secondAttribute="leading" id="ebE-LQ-dJS"/>
                                         <constraint firstItem="wbg-RK-ocv" firstAttribute="top" secondItem="w4f-Xr-nmD" secondAttribute="top" id="fIv-Rm-Daf"/>

@@ -42,9 +42,9 @@ class EventManager {
                         if let dateFormatted = formatter.date(from: date) {
                             let event = Event(name: name, place: placeName, dateTime: dateFormatted, coordinates: (latitude: Double(latitude)!, longitude: Double(longitude)!), description: description, creatorID: userID)
                             self?.events.append(event)
+                            onCompletion(true)
                         }
                     }
-                    onCompletion(true)
                 }
             })
         }

@@ -17,6 +17,7 @@ class ChatViewController: JSQMessagesViewController {
     
     private var chatMessages = [JSQMessage]()
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
+    private var updatedMessageRefHandle: DatabaseHandle?
     private let imageURLNotSetKey = "NOTSET"
     
     lazy var outgoingBubble: JSQMessagesBubbleImage = {
@@ -35,7 +36,7 @@ class ChatViewController: JSQMessagesViewController {
         reloadChatMessages()
     }
     
-    private func reloadChatMessages(){
+    private func reloadChatMessages() {
         chatMessages = []
         loadMessages()
     }
@@ -62,14 +63,33 @@ class ChatViewController: JSQMessagesViewController {
         let query = Constants.Refs.databaseChats.queryLimited(toLast: 30)
         
         _ = query.observe(.childAdded, with: { [weak self] snapshot in
-            if let data = snapshot.value as? [String: String],
-                let id = data["sender_id"],
-                let name = data["name"],
-                let text = data["text"],
-                !text.isEmpty {
-                if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-                    self?.chatMessages.append(message)
-                    self?.finishReceivingMessage()
+            if let data = snapshot.value as? [String: String] {
+                if let id = data["sender_id"],
+                    let name = data["name"],
+                    let text = data["text"],
+                    !text.isEmpty {
+                    if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+                        self?.chatMessages.append(message)
+                        self?.finishReceivingMessage()
+                    }
+                } else if let id = data["senderID"],
+                    let photoURL = data["photoURL"] {
+                    if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self?.senderId) {
+                        self?.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
+                        if photoURL.hasPrefix("gs://") {
+                            self?.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
+                        }
+                    }
+                }
+            }
+        })
+        updatedMessageRefHandle = Constants.Refs.databaseChats.observe(.childChanged, with: { snapshot in
+            let key = snapshot.key
+            let messageData = snapshot.value as! Dictionary<String, String>
+            
+            if let photoURL = messageData["photoURL"] as String! {
+                if let mediaItem = self.photoMessageMap[key] {
+                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
                 }
             }
         })
@@ -216,7 +236,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         if let key = sendPhotoMessage() {
-            let imageData = UIImageJPEGRepresentation(image, 1.0)
+            let imageData = UIImageJPEGRepresentation(image, 0.05)
             
             let imagePath = Auth.auth().currentUser!.uid + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
             

@@ -13,9 +13,16 @@ import FBSDKLoginKit
 class EventsViewController: UITableViewController {
 
     let eventManager = EventManager()
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.center = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
+        activityIndicator.color = UIColor.red
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        
         if FacebookChecker.checkFacebookLogin() {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
@@ -23,21 +30,21 @@ class EventsViewController: UITableViewController {
         }
         tableView.dataSource = self
         tableView.delegate = self
-        eventManager.getEvents(){_ in 
+        eventManager.getEvents { _ in
             self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
         }
         tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if (FacebookUser.fbUser?.firstName) != nil {
-            if FBSDKAccessToken.current() != nil {
-                navigationItem.rightBarButtonItem?.isEnabled = true
-            } else {
-                navigationItem.rightBarButtonItem?.isEnabled = false
-            }
+        if FBSDKAccessToken.current() != nil {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableCell", for: indexPath) as? EventTableViewCell else {
             fatalError("Cell is not EventTableCell")
@@ -46,8 +53,12 @@ class EventsViewController: UITableViewController {
         let coordinates = CLLocationCoordinate2DMake(eventManager.events[indexPath.row].coordinates.latitude, eventManager.events[indexPath.row].coordinates.longitude)
         var region = MKCoordinateRegion()
         region.center = coordinates
-        region.span.latitudeDelta = 0.02
-        region.span.longitudeDelta = 0.02
+        region.span.latitudeDelta = 0.002
+        region.span.longitudeDelta = 0.002
+        
+        let pinPoint = MKPointAnnotation()
+        pinPoint.coordinate = coordinates
+        cell.eventMap.addAnnotation(pinPoint)
 
         cell.eventName.text = eventManager.events[indexPath.row].name
         cell.eventDesc.text = eventManager.events[indexPath.row].description
