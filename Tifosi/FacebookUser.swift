@@ -50,10 +50,8 @@ class FacebookUser {
 class FacebookChecker {
     static func checkFacebookLogin() -> Bool {
         if (FacebookUser.fbUser?.firstName) != nil {
-            print("true")
             return true
         } else {
-            print("false")
             return false
         }
     }

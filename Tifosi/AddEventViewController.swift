@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Firebase
 
-class AddEventViewController: UITableViewController, MKMapViewDelegate {
+class AddEventViewController: UITableViewController, MKMapViewDelegate, UITextViewDelegate {
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var descField: UITextView!
@@ -28,6 +28,7 @@ class AddEventViewController: UITableViewController, MKMapViewDelegate {
         eventLocationMap.delegate = self
         nameField.becomeFirstResponder()
         title = "Add Event"
+        descField.delegate = self
         gestureRecognizer.delegate = self as? UIGestureRecognizerDelegate
         eventLocationMap.addGestureRecognizer(gestureRecognizer)
     }
@@ -37,7 +38,7 @@ class AddEventViewController: UITableViewController, MKMapViewDelegate {
 
         let latitude = String(mapLocation?.lat ?? 0)
         let longitude = String(mapLocation?.long ?? 0)
-        
+
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(abbreviation: "CET")
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -55,6 +56,20 @@ class AddEventViewController: UITableViewController, MKMapViewDelegate {
 
         ref.setValue(message)
         dismiss(animated: true, completion: nil)
+    }
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if descField.text == "Description" {
+            descField.text = ""
+            descField.textColor = UIColor.black
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if descField.text == "" {
+            descField.textColor = UIColor.lightGray
+            descField.text = "Description"
+        }
     }
 
     func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {

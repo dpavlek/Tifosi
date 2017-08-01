@@ -32,10 +32,6 @@ class ChatViewController: JSQMessagesViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func refreshChat(_ sender: Any) {
-        reloadChatMessages()
-    }
-    
     private func reloadChatMessages() {
         chatMessages = []
         loadMessages()
