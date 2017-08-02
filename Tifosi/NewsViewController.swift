@@ -23,11 +23,11 @@ class NewsViewController: UITableViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+        self.refreshControl?.addTarget(self, action: #selector(NewsViewController.refreshTable(refreshControl:)), for: UIControlEvents.valueChanged)
         loadData(urlToLoad: url)
     }
     
-    @IBAction func refreshTable(_ sender: UIBarButtonItem) {
+    func refreshTable(refreshControl: UIRefreshControl) {
         loadData(urlToLoad: url)
     }
     
@@ -35,6 +35,7 @@ class NewsViewController: UITableViewController {
         fetcher.fetch(fromUrl: urlToLoad) { [weak self] jsonData in
             self?.articleArray = Articles(json: jsonData)
             self?.tableView.reloadData()
+            self?.refreshControl?.endRefreshing()
         }
     }
     

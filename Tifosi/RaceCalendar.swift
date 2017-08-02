@@ -18,12 +18,9 @@ struct Race {
 
 class RaceCalendar {
     
-    static let f1Calendar = RaceCalendar()
-    
     var races = [Race]()
     
-    private init?() {
-        
+    init() {
         DispatchQueue.global().async {
             let f1CalendarData = try? Data(contentsOf: Constants.f1CalendarUrl)
             DispatchQueue.main.async {

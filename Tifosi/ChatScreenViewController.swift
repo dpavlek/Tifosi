@@ -11,6 +11,8 @@ import FBSDKLoginKit
 
 class ChatScreenViewController: UIViewController {
 
+    let raceCalendar = RaceCalendar()
+
     @IBOutlet weak var chatLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var startChatBtn: UIButton!
@@ -21,6 +23,11 @@ class ChatScreenViewController: UIViewController {
         self.startChatBtn.isEnabled = false
         if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
             self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
+            if FBSDKAccessToken.current() != nil {
+                self.startChatBtn.isEnabled = true
+            } else {
+                self.startChatBtn.isEnabled = false
+            }
         }
     }
 
@@ -41,18 +48,16 @@ class ChatScreenViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
-        if let racesUnwrapped = RaceCalendar.f1Calendar?.races {
-            for race in racesUnwrapped {
+        for race in self.raceCalendar.races {
 
-                let timeToRace = race.date.timeIntervalSince1970 - Date().timeIntervalSince1970
+            let timeToRace = race.date.timeIntervalSince1970 - Date().timeIntervalSince1970
 
-                if (timeToRace < Constants.threeDaysInSeconds) && (timeToRace > 0) {
-                    self.startChatBtn.isEnabled = true
-                    self.chatLabel.text = race.raceName
-                } else {
-                    self.startChatBtn.isEnabled = false
-                    self.chatLabel.text = "Session not in progress"
-                }
+            if (timeToRace < Constants.threeDaysInSeconds) && (timeToRace > 0) {
+                self.startChatBtn.isEnabled = true
+                self.chatLabel.text = race.raceName
+            } else {
+                self.startChatBtn.isEnabled = false
+                self.chatLabel.text = "Session not in progress"
             }
         }
     }

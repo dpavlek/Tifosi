@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0E50AE1F31C5B600EDBF3D /* EventDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0E50AD1F31C5B600EDBF3D /* EventDescriptionTableViewController.swift */; };
+		0E0E50B11F31CB0800EDBF3D /* JoinedPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0E50B01F31CB0800EDBF3D /* JoinedPeopleViewController.swift */; };
+		0E0E50B31F31CBB800EDBF3D /* JoinedPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0E50B21F31CBB800EDBF3D /* JoinedPersonTableViewCell.swift */; };
 		0E214A011F3072E90096274B /* Pods_Tifosi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503C5074BEDB478FD3E4954 /* Pods_Tifosi.framework */; };
 		0E214A621F3087C90096274B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E214A611F3087C90096274B /* EventTableViewCell.swift */; };
 		0E403EBB1F29D6AE0003E5AB /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E0E50AD1F31C5B600EDBF3D /* EventDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionTableViewController.swift; sourceTree = "<group>"; };
+		0E0E50B01F31CB0800EDBF3D /* JoinedPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedPeopleViewController.swift; sourceTree = "<group>"; };
+		0E0E50B21F31CBB800EDBF3D /* JoinedPersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedPersonTableViewCell.swift; sourceTree = "<group>"; };
 		0E214A611F3087C90096274B /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceCalendar.swift; sourceTree = "<group>"; };
@@ -73,6 +79,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0E50AF1F31CA9600EDBF3D /* EventDescription */ = {
+			isa = PBXGroup;
+			children = (
+				0E0E50AD1F31C5B600EDBF3D /* EventDescriptionTableViewController.swift */,
+				0E0E50B01F31CB0800EDBF3D /* JoinedPeopleViewController.swift */,
+				0E0E50B21F31CBB800EDBF3D /* JoinedPersonTableViewCell.swift */,
+			);
+			name = EventDescription;
+			sourceTree = "<group>";
+		};
 		1F149C441EB36364002F3332 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +154,7 @@
 				1F149C641EB366E8002F3332 /* EventsViewController.swift */,
 				1FBF96651EC4B834000C43F7 /* AddEventViewController.swift */,
 				0E214A611F3087C90096274B /* EventTableViewCell.swift */,
+				0E0E50AF1F31CA9600EDBF3D /* EventDescription */,
 			);
 			name = EventsController;
 			sourceTree = "<group>";
@@ -315,9 +332,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E0E50B11F31CB0800EDBF3D /* JoinedPeopleViewController.swift in Sources */,
 				1F149C551EB36364002F3332 /* ChatScreenViewController.swift in Sources */,
+				0E0E50AE1F31C5B600EDBF3D /* EventDescriptionTableViewController.swift in Sources */,
 				1FBF96661EC4B834000C43F7 /* AddEventViewController.swift in Sources */,
 				1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */,
+				0E0E50B31F31CBB800EDBF3D /* JoinedPersonTableViewCell.swift in Sources */,
 				0E214A621F3087C90096274B /* EventTableViewCell.swift in Sources */,
 				62EA73FD1EC43AFD000BB4EF /* Article.swift in Sources */,
 				1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */,
