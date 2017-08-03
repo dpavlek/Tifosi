@@ -15,6 +15,7 @@ struct Constants {
         static let databaseRoot = Database.database().reference()
         static let databaseChats = databaseRoot.child("chats")
         static let databaseEvents = databaseRoot.child("events")
+        static let databaseGuests = databaseRoot.child("guests")
         static let storage = Storage.storage().reference(forURL: "gs://tifosi-a5cbe.appspot.com/")
     }
 

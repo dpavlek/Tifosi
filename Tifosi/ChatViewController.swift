@@ -14,6 +14,7 @@ import Firebase
 
 class ChatViewController: JSQMessagesViewController {
     
+    private var raceCalendar: RaceCalendar?
     private var chatMessages = [JSQMessage]()
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
     private var updatedMessageRefHandle: DatabaseHandle?
@@ -27,10 +28,6 @@ class ChatViewController: JSQMessagesViewController {
         JSQMessagesBubbleImageFactory()!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }()
     
-    @IBAction func dismissChat(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     private func reloadChatMessages() {
         chatMessages = []
         loadMessages()
@@ -38,6 +35,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
         senderId = FacebookUser.fbUser?.eMail
         if let userFirstName = FacebookUser.fbUser?.firstName {
             if let userLastName = FacebookUser.fbUser?.lastName {

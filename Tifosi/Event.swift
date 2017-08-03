@@ -55,6 +55,27 @@ class EventManager {
     func getCount() -> Int {
         return events.count
     }
+
+    func addEventToDatabase(eventToAdd: Event) {
+        let ref = Constants.Refs.databaseEvents.childByAutoId()
+
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(abbreviation: "CET")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let eventDateString = formatter.string(from: eventToAdd.dateTime)
+
+        let message = [
+            "name": eventToAdd.name,
+            "placeName": eventToAdd.place,
+            "description": eventToAdd.description,
+            "date": eventDateString,
+            "latitude": eventToAdd.coordinates.latitude.description,
+            "longitude": eventToAdd.coordinates.longitude.description,
+            "userID": eventToAdd.creatorID,
+        ]
+
+        ref.setValue(message)
+    }
 }
 
 struct Person {
@@ -70,8 +91,8 @@ class EventPeopleManager {
     var people: [Person] = []
 
     func getPeople(key: String, onCompletion: @escaping ((Bool) -> Void)) {
-        
-        let query = Constants.Refs.databaseEvents.child(key).child("guests")
+
+        let query = Constants.Refs.databaseGuests.child(key)
 
         DispatchQueue.global().async {
             _ = query.observe(.childAdded, with: { [weak self] snapshot in
@@ -95,5 +116,18 @@ class EventPeopleManager {
 
     func getCount() -> Int {
         return people.count
+    }
+
+    func joinTheEvent(eventID: String) {
+        let ref = Constants.Refs.databaseGuests.child(eventID).childByAutoId()
+
+        let message = [
+            "userID": FacebookUser.fbUser?.eMail,
+            "userName": FacebookUser.fbUser?.firstName,
+            "userSurname": FacebookUser.fbUser?.lastName,
+            "userPhotoURL": FacebookUser.fbUser?.userPhotoURL,
+        ]
+
+        ref.setValue(message)
     }
 }

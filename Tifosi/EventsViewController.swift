@@ -12,10 +12,9 @@ import FBSDKLoginKit
 
 class EventsViewController: UITableViewController {
 
-    let eventManager = EventManager()
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-    let locationManager = CLLocationManager()
-    private var locValue: CLLocationCoordinate2D?
+    private let eventManager = EventManager()
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    private let locationManager = CustomLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,20 +32,12 @@ class EventsViewController: UITableViewController {
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
+
         tableView.dataSource = self
         tableView.delegate = self
         eventManager.getEvents { _ in
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
-        }
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self as? CLLocationManagerDelegate
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-            locValue = locationManager.location?.coordinate
         }
         tableView.reloadData()
     }
@@ -66,8 +57,7 @@ class EventsViewController: UITableViewController {
 
         let coordinates = CLLocationCoordinate2DMake(eventManager.events[indexPath.row].coordinates.latitude, eventManager.events[indexPath.row].coordinates.longitude)
         let eventPosition = CLLocation(latitude: eventManager.events[indexPath.row].coordinates.latitude, longitude: eventManager.events[indexPath.row].coordinates.longitude)
-        let currentPosition = CLLocation(latitude: locValue?.latitude ?? -82.0, longitude: locValue?.longitude ?? 135.0)
-        let distance = (currentPosition.distance(from: eventPosition)) / 1000
+        let distance = locationManager.getDistanceFromCurrent(location: eventPosition)
         var region = MKCoordinateRegion()
         region.center = coordinates
         region.span.latitudeDelta = 0.002
@@ -84,7 +74,7 @@ class EventsViewController: UITableViewController {
         if distance < 300 {
             cell.eventDistance.text = String(format: "%.0f km", distance)
         } else {
-            cell.eventDistance.text = "Too far."
+            cell.eventDistance.text = "Too far"
         }
 
         return cell

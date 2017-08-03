@@ -15,7 +15,7 @@ class NewsViewController: UITableViewController {
     // private var eName = String()
     
     private let url = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.autosport.com%2Frss%2Ffeed%2Ff1")!
-    private let backupURL = URL(string: "http://hmpg.net")!
+    private let backupURL = URL(string: "https://hmpg.net")!
     private let fetcher = Fetcher()
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class NewsViewController: UITableViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        self.refreshControl?.addTarget(self, action: #selector(NewsViewController.refreshTable(refreshControl:)), for: UIControlEvents.valueChanged)
+        refreshControl?.addTarget(self, action: #selector(NewsViewController.refreshTable(refreshControl:)), for: UIControlEvents.valueChanged)
         loadData(urlToLoad: url)
     }
     
@@ -36,15 +36,6 @@ class NewsViewController: UITableViewController {
             self?.articleArray = Articles(json: jsonData)
             self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let articleUrlString = articleArray?.articles[indexPath.row].link
-        let articleUrl = URL(string: articleUrlString!)
-        
-        UIApplication.shared.open(articleUrl ?? backupURL, options: [:]) { _ in
         }
     }
     
@@ -64,5 +55,17 @@ class NewsViewController: UITableViewController {
         cell.dateLabel.text = article?.date.description
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showWebPageSegue" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let controller = segue.destination as! WebPageViewController
+                
+                let articleUrlString = articleArray?.articles[indexPath.row].link
+                let articleUrl = URL(string: articleUrlString!)
+                controller.webPageURL = articleUrl
+            }
+        }
     }
 }

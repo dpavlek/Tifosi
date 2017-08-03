@@ -1,14 +1,33 @@
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "4FT-Oa-ueD"; */
+"4FT-Oa-ueD.text" = "Opis";
+
+/* Class = "UILabel"; text = "Date:"; ObjectID = "71w-U3-Xgv"; */
+"71w-U3-Xgv.text" = "Datum:";
+
+/* Class = "UITextView"; text = "Description"; ObjectID = "7t7-vP-DV5"; */
+"7t7-vP-DV5.text" = "Opis";
+
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "9Pf-2V-p7j"; */
 "9Pf-2V-p7j.title" = "Postavke";
 
 /* Class = "UILabel"; text = "Session not in progress"; ObjectID = "9UQ-fb-DsW"; */
 "9UQ-fb-DsW.text" = "Sjednica nije u tijeku";
 
+/* Class = "UINavigationItem"; title = "News"; ObjectID = "9uJ-go-I6j"; */
+"9uJ-go-I6j.title" = "Novosti";
+
 /* Class = "UITabBarItem"; title = "Events"; ObjectID = "GM5-1O-vDD"; */
-"GM5-1O-vDD.title" = "Doagađaji";
+"GM5-1O-vDD.title" = "Događaji";
+
+/* Class = "UILabel"; text = "Place:"; ObjectID = "Ivb-TP-Opf"; */
+"Ivb-TP-Opf.text" = "Mjesto:";
 
 /* Class = "UITextField"; placeholder = "Name"; ObjectID = "K3d-Ai-U34"; */
-"K3d-Ai-U34.placeholder" = "Naziv";
+"K3d-Ai-U34.placeholder" = "Ime";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Li6-mZ-Tkg"; */
+"Li6-mZ-Tkg.text" = "Label";
 
 /* Class = "UITabBarItem"; title = "News"; ObjectID = "NCL-Oz-Myd"; */
 "NCL-Oz-Myd.title" = "Novosti";
@@ -19,50 +38,62 @@
 /* Class = "UILabel"; text = "Pirelli has concluded that Kimi Raikkonen's tyre problem at the British Grand Prix was caused by external damage rather than any structural or wear issues"; ObjectID = "R5y-AB-AGr"; */
 "R5y-AB-AGr.text" = "Pirelli has concluded that Kimi Raikkonen's tyre problem at the British Grand Prix was caused by external damage rather than any structural or wear issues";
 
+/* Class = "UILabel"; text = "Name Surname"; ObjectID = "TwA-QZ-Wff"; */
+"TwA-QZ-Wff.text" = "Ime Prezime";
+
+/* Class = "UILabel"; text = "Event Name"; ObjectID = "UA8-YD-Q8c"; */
+"UA8-YD-Q8c.text" = "Event Name";
+
 /* Class = "UITextField"; placeholder = "Place"; ObjectID = "XQv-jP-WZC"; */
 "XQv-jP-WZC.placeholder" = "Mjesto";
 
-/* Class = "UITabBarItem"; title = "Chat"; ObjectID = "cPa-gy-q4n"; */
-"cPa-gy-q4n.title" = "Chat";
+/* Class = "UILabel"; text = "XX km"; ObjectID = "Xec-qR-nbR"; */
+"Xec-qR-nbR.text" = "XX km";
 
-/* Class = "UITextField"; placeholder = "Description"; ObjectID = "eaa-5q-ivd"; */
-"eaa-5q-ivd.placeholder" = "Opis";
+/* Class = "UILabel"; text = "Description Of Event"; ObjectID = "YPf-tV-6Wd"; */
+"YPf-tV-6Wd.text" = "Description Of Event";
+
+/* Class = "UITabBarItem"; title = "Chat"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Čavrljanje";
+
+/* Class = "UILabel"; text = "DD-MM-YYYY"; ObjectID = "eYp-WC-a9p"; */
+"eYp-WC-a9p.text" = "DD-MM-YYYY";
+
+/* Class = "UILabel"; text = "Host:"; ObjectID = "fdN-XC-AxP"; */
+"fdN-XC-AxP.text" = "Domaćin:";
 
 /* Class = "UIButton"; normalTitle = "Start"; ObjectID = "i0r-JW-VjS"; */
 "i0r-JW-VjS.normalTitle" = "Početak";
+
+/* Class = "UILabel"; text = "dd/MM/yyyy HH:mm"; ObjectID = "scU-Ct-BOy"; */
+"scU-Ct-BOy.text" = "dd/MM/yyyy HH:mm";
 
 /* Class = "UILabel"; text = "Pirelli: Raikkonen's British GP puncture caused by external damage"; ObjectID = "tOn-r7-kZf"; */
 "tOn-r7-kZf.text" = "Pirelli: Raikkonen's British GP puncture caused by external damage";
 
 /* Class = "UILabel"; text = "Welcome!"; ObjectID = "tbJ-Gr-mkO"; */
-"tbJ-Gr-mkO.text" = "Dobro Došli!";
+"tbJ-Gr-mkO.text" = "Dobro došli!";
+
+/* Class = "UINavigationItem"; title = "Joined"; ObjectID = "uAF-Eq-xSS"; */
+"uAF-Eq-xSS.title" = "Pristupili";
 
 /* Class = "UINavigationItem"; title = "Chat"; ObjectID = "uC0-If-sfg"; */
-"uC0-If-sfg.title" = "Chat";
+"uC0-If-sfg.title" = "Čavrljanje";
+
+/* Class = "UIButton"; normalTitle = "People Attending"; ObjectID = "uXi-Nm-qcX"; */
+"uXi-Nm-qcX.normalTitle" = "Ljudi koji će prisustvovati";
 
 /* Class = "UINavigationItem"; title = "Events"; ObjectID = "vty-TD-8ea"; */
 "vty-TD-8ea.title" = "Događaji";
 
+/* Class = "UILabel"; text = "Name Of Event"; ObjectID = "wbg-RK-ocv"; */
+"wbg-RK-ocv.text" = "Name Of Event";
+
 /* Class = "UILabel"; text = "2017-07-26 17:42:03"; ObjectID = "xXx-Ld-t45"; */
 "xXx-Ld-t45.text" = "2017-07-26 17:42:03";
 
-/* Class = "UITabBarItem"; title = "Events"; ObjectID = "GM5-1O-vDD"; */
-"GM5-1O-vDD.title" = "Događaji";
+/* Class = "UIBarButtonItem"; title = "Join"; ObjectID = "xff-B4-LOD"; */
+"xff-B4-LOD.title" = "Pristupi";
 
-/* Class = "UITabBarItem"; title = "News"; ObjectID = "NCL-Oz-Myd"; */
-"NCL-Oz-Myd.title" = "Novosti";
-
-/* Class = "UILabel"; text = "Loaded by SecondViewController"; ObjectID = "NDk-cv-Gan"; */
-"NDk-cv-Gan.text" = "Loaded by SecondViewController";
-
-/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "PVz-1e-yxL"; */
-"PVz-1e-yxL.title" = "Postavke";
-
-/* Class = "UITabBarItem"; title = "Chat"; ObjectID = "cPa-gy-q4n"; */
-"cPa-gy-q4n.title" = "Chat";
-
-/* Class = "UILabel"; text = "Second View"; ObjectID = "zEq-FU-wV5"; */
-"zEq-FU-wV5.text" = "Second View";
-
-/* Title for News Bar */
-"newsTitle" = "Novosti"
+/* Class = "UILabel"; text = "Place Name"; ObjectID = "zgo-nD-wuQ"; */
+"zgo-nD-wuQ.text" = "Place Name";

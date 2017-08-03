@@ -18,11 +18,12 @@ class EventDescriptionTableViewController: UITableViewController {
     @IBOutlet weak var eventLocationMap: MKMapView!
     
     var currentEvent: Event?
+    var peopleManager = EventPeopleManager()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showJoinedPeople" {
             let joinedViewController = segue.destination as! JoinedPeopleViewController
-            joinedViewController.currentEvent = self.currentEvent
+            joinedViewController.currentEvent = currentEvent
         }
     }
     
@@ -53,17 +54,7 @@ class EventDescriptionTableViewController: UITableViewController {
     }
     
     @IBAction func joinEvent(_ sender: Any) {
-        
-        let ref = Constants.Refs.databaseEvents.child((currentEvent?.eventID)!).child("guests").childByAutoId()
-        
-        let message = [
-            "userID": FacebookUser.fbUser?.eMail,
-            "userName": FacebookUser.fbUser?.firstName,
-            "userSurname": FacebookUser.fbUser?.lastName,
-            "userPhotoURL": FacebookUser.fbUser?.userPhotoURL
-        ]
-        
-        ref.setValue(message)
+        peopleManager.joinTheEvent(eventID: (currentEvent?.eventID)!)
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     

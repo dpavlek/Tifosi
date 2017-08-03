@@ -18,7 +18,13 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         view.addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let leadingConstraint = NSLayoutConstraint(item: self.view, attribute: .leadingMargin, relatedBy: .equal, toItem: loginButton, attribute: .leading, multiplier: 1, constant: 0)
+        let leadingConstraint = NSLayoutConstraint(item: self.view,
+                                                   attribute: .leadingMargin,
+                                                   relatedBy: .equal,
+                                                   toItem: loginButton,
+                                                   attribute: .leading,
+                                                   multiplier: 1,
+                                                   constant: 0)
         
         let topConstraint = NSLayoutConstraint(item: loginButton,
                                                attribute: .top,
@@ -49,7 +55,6 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         loginButton.delegate = self
         loginButton.readPermissions = ["email", "public_profile"]
-        // Do any additional setup after loading the view.
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -58,6 +63,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith didCompleteWithresult: FBSDKLoginManagerLoginResult!, error: Error!) {
+        
         if error != nil {
             print(error)
             return

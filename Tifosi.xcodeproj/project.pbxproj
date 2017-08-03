@@ -16,6 +16,8 @@
 		0E403EBF1F29E95E0003E5AB /* RaceCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */; };
 		0E403EC11F2A154F0003E5AB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EC01F2A154F0003E5AB /* ChatViewController.swift */; };
 		0E403EC41F2A22FF0003E5AB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EC31F2A22FF0003E5AB /* Constants.swift */; };
+		0E43F6711F3312FF00A45639 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E43F6701F3312FF00A45639 /* Location.swift */; };
+		0E43F6731F33179D00A45639 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E43F6721F33179D00A45639 /* WebPageViewController.swift */; };
 		0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */; };
 		0EAF7FF21F2F6BFB00EE1914 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF7FF11F2F6BFB00EE1914 /* Event.swift */; };
 		1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C501EB36364002F3332 /* AppDelegate.swift */; };
@@ -42,9 +44,11 @@
 		0E403EC01F2A154F0003E5AB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		0E403EC21F2A16E70003E5AB /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		0E403EC31F2A22FF0003E5AB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0E43F6701F3312FF00A45639 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		0E43F6721F33179D00A45639 /* WebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
+		0E43F6741F3322CF00A45639 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Main.strings; sourceTree = "<group>"; };
+		0E43F6751F3322CF00A45639 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFetcher.swift; sourceTree = "<group>"; };
-		0EAF7FEF1F2F3E7900EE1914 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Main.strings; sourceTree = "<group>"; };
-		0EAF7FF01F2F3E7900EE1914 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0EAF7FF11F2F6BFB00EE1914 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1F149C4D1EB36364002F3332 /* Tifosi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tifosi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F149C501EB36364002F3332 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 				0E403EBE1F29E95E0003E5AB /* RaceCalendar.swift */,
 				0E403EC31F2A22FF0003E5AB /* Constants.swift */,
 				0EAF7FF11F2F6BFB00EE1914 /* Event.swift */,
+				0E43F6701F3312FF00A45639 /* Location.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			children = (
 				1F149C521EB36364002F3332 /* NewsViewController.swift */,
 				0E403EBA1F29D6AE0003E5AB /* ArticleTableViewCell.swift */,
+				0E43F6721F33179D00A45639 /* WebPageViewController.swift */,
 			);
 			name = NewsController;
 			sourceTree = "<group>";
@@ -340,12 +346,14 @@
 				0E0E50B31F31CBB800EDBF3D /* JoinedPersonTableViewCell.swift in Sources */,
 				0E214A621F3087C90096274B /* EventTableViewCell.swift in Sources */,
 				62EA73FD1EC43AFD000BB4EF /* Article.swift in Sources */,
+				0E43F6731F33179D00A45639 /* WebPageViewController.swift in Sources */,
 				1F149C651EB366E8002F3332 /* EventsViewController.swift in Sources */,
 				0E403EBB1F29D6AE0003E5AB /* ArticleTableViewCell.swift in Sources */,
 				0E403EBF1F29E95E0003E5AB /* RaceCalendar.swift in Sources */,
 				0E403EC41F2A22FF0003E5AB /* Constants.swift in Sources */,
 				1F149C671EB36B0E002F3332 /* SettingsViewController.swift in Sources */,
 				1FBF96681EC4C05E000C43F7 /* FacebookUser.swift in Sources */,
+				0E43F6711F3312FF00A45639 /* Location.swift in Sources */,
 				0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */,
 				0E403EC11F2A154F0003E5AB /* ChatViewController.swift in Sources */,
 				0EAF7FF21F2F6BFB00EE1914 /* Event.swift in Sources */,
@@ -361,7 +369,7 @@
 			children = (
 				1F149C571EB36364002F3332 /* Base */,
 				1F2CBD501EBF521600E4FA68 /* en */,
-				0EAF7FEF1F2F3E7900EE1914 /* hr */,
+				0E43F6741F3322CF00A45639 /* hr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -370,7 +378,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1F149C5C1EB36364002F3332 /* Base */,
-				0EAF7FF01F2F3E7900EE1914 /* hr */,
+				0E43F6751F3322CF00A45639 /* hr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

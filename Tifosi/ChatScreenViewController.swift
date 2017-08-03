@@ -20,6 +20,7 @@ class ChatScreenViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = false
         self.startChatBtn.isEnabled = false
         if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
             self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
@@ -32,6 +33,7 @@ class ChatScreenViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
         if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
             self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
             if FBSDKAccessToken.current() != nil {

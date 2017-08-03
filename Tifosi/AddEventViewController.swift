@@ -19,12 +19,15 @@ class AddEventViewController: UITableViewController, MKMapViewDelegate, UITextVi
     @IBOutlet weak var eventDatePicker: UIDatePicker!
 
     private var mapLocation: (lat: Double, long: Double)?
+    private let eventManager = EventManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(AddEventViewController.handleTap(gestureRecognizer:)))
         gestureRecognizer.minimumPressDuration = 1.0
         gestureRecognizer.delaysTouchesBegan = true
+
         eventLocationMap.delegate = self
         nameField.becomeFirstResponder()
         title = "Add Event"
@@ -33,29 +36,23 @@ class AddEventViewController: UITableViewController, MKMapViewDelegate, UITextVi
         eventLocationMap.addGestureRecognizer(gestureRecognizer)
     }
 
-    @IBAction func addEventToDatabase(_ sender: Any) {
-        let ref = Constants.Refs.databaseEvents.childByAutoId()
-
-        let latitude = String(mapLocation?.lat ?? 0)
-        let longitude = String(mapLocation?.long ?? 0)
-
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "CET")
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let eventDateString = formatter.string(from: eventDatePicker.date)
-
-        let message = [
-            "name": nameField.text ?? "nil",
-            "placeName": placeField.text ?? "nil",
-            "description": descField.text ?? "nil",
-            "date": eventDateString,
-            "latitude": latitude,
-            "longitude": longitude,
-            "userID": FacebookUser.fbUser?.eMail ?? "No User",
-        ]
-
-        ref.setValue(message)
+    @IBAction func addEventOnClick(_ sender: Any) {
+        addEventToDatabase()
         dismiss(animated: true, completion: nil)
+    }
+
+    func addEventToDatabase() {
+        let latitude = mapLocation?.lat ?? 0
+        let longitude = mapLocation?.long ?? 0
+
+        let name = nameField.text ?? "nil"
+        let placeName = placeField.text ?? "nil"
+        let description = descField.text ?? "nil"
+        let userID = FacebookUser.fbUser?.eMail ?? "No User"
+
+        let eventToAdd = Event(name: name, place: placeName, dateTime: eventDatePicker.date, coordinates: (latitude: latitude, longitude: longitude), description: description, creatorID: userID, eventID: "")
+
+        eventManager.addEventToDatabase(eventToAdd: eventToAdd)
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {

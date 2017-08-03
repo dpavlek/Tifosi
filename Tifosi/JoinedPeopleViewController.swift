@@ -18,6 +18,10 @@ class JoinedPeopleViewController: UIViewController, UITableViewDelegate, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        joinedPeopleTableView.delegate = self
+        joinedPeopleTableView.dataSource = self
+
         peopleWhoJoined.getPeople(key: (currentEvent?.eventID)!) { _ in
             self.joinedPeopleTableView.reloadData()
         }
@@ -33,16 +37,23 @@ class JoinedPeopleViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "dayCell", for: indexPath) as? JoinedPersonTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "JoinedPersonTableViewCell", for: indexPath) as? JoinedPersonTableViewCell else {
             fatalError("Cell is not JoinedPersonTableViewCell")
         }
 
-        let fbImageURL = URL(fileURLWithPath: peopleWhoJoined.people[indexPath.row].photoURLString)
-        let fbImageData = try? Data(contentsOf: fbImageURL)
-        let fbImage = UIImage(data: fbImageData!)
+        DispatchQueue.global().async {
+            if let fbImageURL = URL(string: self.peopleWhoJoined.people[indexPath.row].photoURLString) {
+                if let fbImageData = try? Data(contentsOf: fbImageURL) {
+                    if let fbImage = UIImage(data: fbImageData) {
+                        DispatchQueue.main.async {
+                            cell.facebookImage.image = fbImage
+                        }
+                    }
+                }
+            }
+        }
 
         cell.facebookName.text = peopleWhoJoined.people[indexPath.row].name + " " + peopleWhoJoined.people[indexPath.row].surname
-        cell.facebookImage.image = fbImage
 
         return cell
     }
