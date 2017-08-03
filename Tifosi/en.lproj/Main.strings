@@ -35,7 +35,7 @@
 "tOn-r7-kZf.text" = "Pirelli: Raikkonen's British GP puncture caused by external damage";
 
 /* Class = "UILabel"; text = "Welcome!"; ObjectID = "tbJ-Gr-mkO"; */
-"tbJ-Gr-mkO.text" = "Dobro Došli!";
+"tbJ-Gr-mkO.text" = "Welcome!";
 
 /* Class = "UINavigationItem"; title = "Chat"; ObjectID = "uC0-If-sfg"; */
 "uC0-If-sfg.title" = "Chat";

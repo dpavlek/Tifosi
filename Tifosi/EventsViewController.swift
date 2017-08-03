@@ -35,6 +35,7 @@ class EventsViewController: UITableViewController {
             self?.tableView.separatorColor = UIColor.lightGray
             self?.tableView.reloadData()
             self?.activityIndicator.stopAnimating()
+            self?.locationManager.stopUpdatingLocation()
         }
         tableView.reloadData()
     }
@@ -71,7 +72,11 @@ class EventsViewController: UITableViewController {
 
         cell.eventName.text = eventManager.events[indexPath.row].name
         cell.eventDesc.text = eventManager.events[indexPath.row].description
-        cell.eventDate.text = eventManager.events[indexPath.row].dateTime.description
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy HH:mm"
+        let dateString = formatter.string(from: eventManager.events[indexPath.row].dateTime)
+        cell.eventDate.text = dateString
 
         if distance < 300 {
             cell.eventDistance.text = String(format: "%.0f km", distance)
@@ -92,6 +97,25 @@ class EventsViewController: UITableViewController {
                 let event = eventManager.events[indexPath.row]
                 controller.currentEvent = event
             }
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let creator = eventManager.events[indexPath.row].creatorID
+        let currentUser = FacebookUser.fbUser?.eMail
+        if creator == currentUser {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let eventID = eventManager.events[indexPath.row].eventID
+            eventManager.removeEvent(eventID: eventID, onCompletion: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
         }
     }
 }

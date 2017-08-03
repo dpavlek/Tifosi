@@ -35,8 +35,7 @@ class NewsViewController: UITableViewController {
         
         // This code doesn't make sense, but what it does is creates the FacebookUser singleton object
         if FBSDKAccessToken.current() != nil {
-            if (FacebookUser.fbUser?.firstName) != nil {
-            }
+            FacebookUser.fbUser?.nothing
         }
         
         tableView.dataSource = self
@@ -70,9 +69,15 @@ class NewsViewController: UITableViewController {
         
         let article = articleArray?.articles[indexPath.row]
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy HH:mm"
+        if let date = article?.date {
+            let dateString = formatter.string(from: date)
+            cell.dateLabel.text = dateString
+        }
+        
         cell.titleLabel.text = article?.name
         cell.descLabel.text = article?.description
-        cell.dateLabel.text = article?.date.description
         
         return cell
     }

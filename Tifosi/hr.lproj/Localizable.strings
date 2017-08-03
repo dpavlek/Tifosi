@@ -8,3 +8,5 @@
 
 "Unjoin" = "Odjavi se";
 "Join" = "Prijavi se";
+"AlertNotFilled" = "Nije sve popunjeno.";
+"AlertNotFilledTitle" = "Pozor!";

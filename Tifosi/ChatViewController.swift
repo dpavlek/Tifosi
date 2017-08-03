@@ -56,12 +56,14 @@ class ChatViewController: JSQMessagesViewController {
     private func checkIfNearTrack() {
         raceCalendar.fetchRaces { [weak self] race in
             let raceLocation = CLLocation(latitude: race.position.latitude, longitude: race.position.longitude)
-            print(raceLocation)
             if let distance = self?.locationManager.getDistanceFromCurrent(location: raceLocation) {
                 if distance > 15 {
-                    self?.inputToolbar.contentView.leftBarButtonItem = nil
+                    DispatchQueue.main.async {
+                        self?.inputToolbar.contentView.leftBarButtonItem = nil
+                    }
                 }
             }
+            self?.locationManager.stopUpdatingLocation()
         }
     }
     

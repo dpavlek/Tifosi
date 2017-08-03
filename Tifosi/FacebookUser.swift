@@ -19,6 +19,7 @@ class FacebookUser {
     var userID: String?
     var userPhotoURL: String?
     var loggedIn: Bool?
+    var nothing: Void?
 
     private init?() {
         if FBSDKAccessToken.current() != nil {

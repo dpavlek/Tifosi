@@ -37,22 +37,36 @@ class AddEventViewController: UITableViewController, MKMapViewDelegate, UITextVi
     }
 
     @IBAction func addEventOnClick(_ sender: Any) {
-        addEventToDatabase()
-        dismiss(animated: true, completion: nil)
+        addEventToDatabase { [weak self] success in
+            if success {
+                self?.dismiss(animated: true, completion: nil)
+            } else {
+                let alertTitle = NSLocalizedString("AlertNotFilledTitle", comment: "")
+                let alertDesc = NSLocalizedString("AlertNotFilled", comment: "")
+                let alert = UIAlertController(title: alertTitle, message: alertDesc, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 
-    func addEventToDatabase() {
+    func addEventToDatabase(onCompletion: @escaping (Bool) -> Void) {
         let latitude = mapLocation?.lat ?? 0
         let longitude = mapLocation?.long ?? 0
 
-        let name = nameField.text ?? "nil"
-        let placeName = placeField.text ?? "nil"
-        let description = descField.text ?? "nil"
-        let userID = FacebookUser.fbUser?.eMail ?? "No User"
+        guard let name = nameField.text,
+            let placeName = placeField.text,
+            let description = descField.text,
+            let userID = FacebookUser.fbUser?.userID,
+            !name.isEmpty, !placeName.isEmpty, !description.isEmpty else {
+            onCompletion(false)
+            return
+        }
 
         let eventToAdd = Event(name: name, place: placeName, dateTime: eventDatePicker.date, coordinates: (latitude: latitude, longitude: longitude), description: description, creatorID: userID, eventID: "")
 
         eventManager.addEventToDatabase(eventToAdd: eventToAdd)
+        onCompletion(true)
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {

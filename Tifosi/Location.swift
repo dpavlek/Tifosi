@@ -39,4 +39,8 @@ class CustomLocationManager {
         return (currentPosition.distance(from: location)) / 1000
     }
     
+    func stopUpdatingLocation(){
+        locationManager.stopUpdatingLocation()
+    }
+    
 }

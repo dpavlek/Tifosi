@@ -29,11 +29,18 @@ class EventDescriptionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy HH:mm"
+        if let date = currentEvent?.dateTime {
+            let dateString = formatter.string(from: date)
+            eventDateLabel.text = dateString
+        }
+        
         eventNameLabel.text = currentEvent?.name
         eventDescLabel.text = currentEvent?.description
         eventHostLabel.text = currentEvent?.creatorID
         eventPlaceName.text = currentEvent?.place
-        eventDateLabel.text = currentEvent?.dateTime.description
         
         let coordinates = CLLocationCoordinate2DMake(currentEvent?.coordinates.latitude ?? 0.0, currentEvent?.coordinates.longitude ?? 0.0)
         var region = MKCoordinateRegion()

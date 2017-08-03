@@ -8,3 +8,5 @@
 
 "Unjoin" = "Unjoin";
 "Join" = "Join";
+"AlertNotFilled" = "Not All Boxes Are Filled";
+"AlertNotFilledTitle" = "Warning!";

@@ -482,7 +482,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Wd9-y0-36k">
                             <connections>
-                                <action selector="addEventToDatabase:" destination="GZI-h6-V4l" id="P7y-7G-CS6"/>
+                                <action selector="addEventOnClick:" destination="GZI-h6-V4l" id="key-11-x0V"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
