@@ -53,14 +53,25 @@ class EventDescriptionTableViewController: UITableViewController {
         eventLocationMap.addAnnotation(pinPoint)
         eventLocationMap.setRegion(region, animated: true)
         
-        if (FacebookUser.fbUser?.eMail) != nil {
-            navigationItem.rightBarButtonItem?.isEnabled = true
-        } else {
-            navigationItem.rightBarButtonItem?.isEnabled = false
+        if let loggedIn = FacebookUser.fbUser?.loggedIn {
+            if loggedIn == true {
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if let loggedIn = FacebookUser.fbUser?.loggedIn {
+            if loggedIn == true {
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        }
+        
         if let key = currentEvent?.eventID {
             peopleManager.getPeople(key: key, onCompletion: { person in
                 if person.email == FacebookUser.fbUser?.eMail {

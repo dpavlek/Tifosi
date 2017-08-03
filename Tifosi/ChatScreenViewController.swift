@@ -25,7 +25,7 @@ class ChatScreenViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
-
+        //MARK: postoji logged in!!
         if FBSDKAccessToken.current() != nil {
             if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
                 self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
