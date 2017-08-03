@@ -20,23 +20,15 @@ class ChatScreenViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        tabBarController?.tabBar.isHidden = false
         self.startChatBtn.isEnabled = false
-        if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
-            self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
-            if FBSDKAccessToken.current() != nil {
-                self.startChatBtn.isEnabled = true
-            } else {
-                self.startChatBtn.isEnabled = false
-            }
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
-        if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
-            self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
-            if FBSDKAccessToken.current() != nil {
+
+        if FBSDKAccessToken.current() != nil {
+            if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
+                self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
                 self.startChatBtn.isEnabled = true
             } else {
                 self.startChatBtn.isEnabled = false
@@ -47,19 +39,18 @@ class ChatScreenViewController: UIViewController {
 
     func checkForRaceDate() {
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-
-        for race in self.raceCalendar.races {
+        self.raceCalendar.fetchRaces { [weak self] race in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
 
             let timeToRace = race.date.timeIntervalSince1970 - Date().timeIntervalSince1970
 
             if (timeToRace < Constants.threeDaysInSeconds) && (timeToRace > 0) {
-                self.startChatBtn.isEnabled = true
-                self.chatLabel.text = race.raceName
+                self?.startChatBtn.isEnabled = true
+                self?.chatLabel.text = race.raceName
             } else {
-                self.startChatBtn.isEnabled = false
-                self.chatLabel.text = "Session not in progress"
+                self?.startChatBtn.isEnabled = false
+                self?.chatLabel.text = "Session not in progress"
             }
         }
     }

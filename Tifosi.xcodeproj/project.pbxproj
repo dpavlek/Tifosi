@@ -18,6 +18,7 @@
 		0E403EC41F2A22FF0003E5AB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E403EC31F2A22FF0003E5AB /* Constants.swift */; };
 		0E43F6711F3312FF00A45639 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E43F6701F3312FF00A45639 /* Location.swift */; };
 		0E43F6731F33179D00A45639 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E43F6721F33179D00A45639 /* WebPageViewController.swift */; };
+		0E43F6781F333B0100A45639 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E43F67A1F333B0100A45639 /* Localizable.strings */; };
 		0E46F3A21F277FC800AD57BC /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */; };
 		0EAF7FF21F2F6BFB00EE1914 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF7FF11F2F6BFB00EE1914 /* Event.swift */; };
 		1F149C511EB36364002F3332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F149C501EB36364002F3332 /* AppDelegate.swift */; };
@@ -48,6 +49,8 @@
 		0E43F6721F33179D00A45639 /* WebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
 		0E43F6741F3322CF00A45639 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Main.strings; sourceTree = "<group>"; };
 		0E43F6751F3322CF00A45639 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0E43F6791F333B0100A45639 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0E43F67B1F333B5100A45639 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0E46F3A11F277FC800AD57BC /* NetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFetcher.swift; sourceTree = "<group>"; };
 		0EAF7FF11F2F6BFB00EE1914 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1F149C4D1EB36364002F3332 /* Tifosi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tifosi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +127,7 @@
 				1F149C681EB37265002F3332 /* Assets.xcassets */,
 				1F149C5E1EB36364002F3332 /* Info.plist */,
 				62B6A6031EC452580014B246 /* GoogleService-Info.plist */,
+				0E43F67A1F333B0100A45639 /* Localizable.strings */,
 			);
 			path = Tifosi;
 			sourceTree = "<group>";
@@ -276,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E43F6781F333B0100A45639 /* Localizable.strings in Resources */,
 				1F149C5D1EB36364002F3332 /* LaunchScreen.storyboard in Resources */,
 				62B6A6041EC452580014B246 /* GoogleService-Info.plist in Resources */,
 				1F149C691EB37265002F3332 /* Assets.xcassets in Resources */,
@@ -364,6 +369,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0E43F67A1F333B0100A45639 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0E43F6791F333B0100A45639 /* hr */,
+				0E43F67B1F333B5100A45639 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		1F149C561EB36364002F3332 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

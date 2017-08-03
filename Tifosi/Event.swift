@@ -90,7 +90,7 @@ class EventPeopleManager {
 
     var people: [Person] = []
 
-    func getPeople(key: String, onCompletion: @escaping ((Bool) -> Void)) {
+    func getPeople(key: String, onCompletion: @escaping ((Person) -> Void)) {
 
         let query = Constants.Refs.databaseGuests.child(key)
 
@@ -99,15 +99,14 @@ class EventPeopleManager {
                 if let data = snapshot.value as? [String: String],
                     let name = data["userName"],
                     let surname = data["userSurname"],
-                    let email = data["userID"],
+                    let email = data["userEmail"],
                     let photoURLString = data["userPhotoURL"],
                     !email.isEmpty {
                     let personID = snapshot.key
-                    // TO-DO: Fix the explicit unwrapping
                     DispatchQueue.main.async {
                         let person = Person(name: name, surname: surname, email: email, photoURLString: photoURLString, personID: personID)
                         self?.people.append(person)
-                        onCompletion(true)
+                        onCompletion(person)
                     }
                 }
             })
@@ -119,15 +118,29 @@ class EventPeopleManager {
     }
 
     func joinTheEvent(eventID: String) {
-        let ref = Constants.Refs.databaseGuests.child(eventID).childByAutoId()
+        if let userID = FacebookUser.fbUser?.userID {
+            let ref = Constants.Refs.databaseGuests.child(eventID).child(userID)
 
-        let message = [
-            "userID": FacebookUser.fbUser?.eMail,
-            "userName": FacebookUser.fbUser?.firstName,
-            "userSurname": FacebookUser.fbUser?.lastName,
-            "userPhotoURL": FacebookUser.fbUser?.userPhotoURL,
-        ]
+            let message = [
+                "userEmail": FacebookUser.fbUser?.eMail,
+                "userName": FacebookUser.fbUser?.firstName,
+                "userSurname": FacebookUser.fbUser?.lastName,
+                "userPhotoURL": FacebookUser.fbUser?.userPhotoURL,
+            ]
 
-        ref.setValue(message)
+            ref.setValue(message)
+        }
+    }
+
+    func removeFromEvent(eventID: String, onCompletion: @escaping ((Bool) -> Void)) {
+        if let userID = FacebookUser.fbUser?.userID {
+            _ = Constants.Refs.databaseGuests.child(eventID).child(userID).removeValue(completionBlock: { Error, _ in
+                if Error != nil {
+                    onCompletion(false)
+                } else {
+                    onCompletion(true)
+                }
+            })
+        }
     }
 }

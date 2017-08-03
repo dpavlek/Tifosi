@@ -18,14 +18,12 @@ struct Race {
 
 class RaceCalendar {
     
-    var races = [Race]()
+    var races: [Race] = []
     
-    init() {
+    func fetchRaces(onCompletion: @escaping ((Race) -> Void)) {
         DispatchQueue.global().async {
-            let f1CalendarData = try? Data(contentsOf: Constants.f1CalendarUrl)
-            DispatchQueue.main.async {
-                var json = JSON(f1CalendarData!)
-                
+            if let data = try? Data(contentsOf: Constants.f1CalendarUrl) {
+                var json = JSON(data)
                 for (_, race) in json["MRData"]["RaceTable"]["Races"] {
                     let season = race["season"].intValue
                     let name = race["raceName"].stringValue
@@ -39,8 +37,11 @@ class RaceCalendar {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss'Z'"
                     let dateFormatted = dateFormatter.date(from: dateTimeString)
-                    
-                    self.races.append(Race(season: season, raceName: name, position: (latitude: latitude, longitude: longitude), date: dateFormatted!))
+                    DispatchQueue.global().async {
+                        let currentRace = Race(season: season, raceName: name, position: (latitude: latitude, longitude: longitude), date: dateFormatted!)
+                        self.races.append(currentRace)
+                        onCompletion(currentRace)
+                    }
                 }
             }
         }

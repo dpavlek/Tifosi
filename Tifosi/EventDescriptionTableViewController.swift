@@ -53,9 +53,32 @@ class EventDescriptionTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let key = currentEvent?.eventID {
+            peopleManager.getPeople(key: key, onCompletion: { person in
+                if person.email == FacebookUser.fbUser?.eMail {
+                    self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("Unjoin", comment: "")
+                } else {
+                    self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("Join", comment: "")
+                }
+            })
+        }
+    }
+    
     @IBAction func joinEvent(_ sender: Any) {
-        peopleManager.joinTheEvent(eventID: (currentEvent?.eventID)!)
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        if navigationItem.rightBarButtonItem?.title! == NSLocalizedString("Join", comment: "") {
+            peopleManager.joinTheEvent(eventID: (currentEvent?.eventID)!)
+            navigationItem.rightBarButtonItem?.title! = NSLocalizedString("Unjoin", comment: "")
+        } else if navigationItem.rightBarButtonItem?.title == NSLocalizedString("Unjoin", comment: "") {
+            peopleManager.removeFromEvent(eventID: (currentEvent?.eventID)!) { success in
+                if success {
+                    self.navigationItem.rightBarButtonItem?.title! = NSLocalizedString("Join", comment: "")
+                } else {
+                    self.navigationItem.rightBarButtonItem?.title! = NSLocalizedString("Unjoin", comment: "")
+                }
+            }
+        }
+        
     }
     
 }

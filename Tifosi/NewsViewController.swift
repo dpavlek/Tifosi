@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class NewsViewController: UITableViewController {
     
     private var articleArray: Articles?
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     
     // private var eName = String()
     
@@ -20,6 +22,22 @@ class NewsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 3)
+        activityIndicator.color = UIColor.red
+        activityIndicator.hidesWhenStopped = true
+        tableView.tableFooterView = UIView()
+        
+        view.addSubview(activityIndicator)
+        tableView.separatorColor = UIColor.clear
+        
+        activityIndicator.startAnimating()
+        
+        // This code doesn't make sense, but what it does is creates the FacebookUser singleton object
+        if FBSDKAccessToken.current() != nil {
+            if (FacebookUser.fbUser?.firstName) != nil {
+            }
+        }
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -36,6 +54,8 @@ class NewsViewController: UITableViewController {
             self?.articleArray = Articles(json: jsonData)
             self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()
+            self?.activityIndicator.stopAnimating()
+            self?.tableView.separatorColor = UIColor.lightGray
         }
     }
     

@@ -14,11 +14,12 @@ import Firebase
 
 class ChatViewController: JSQMessagesViewController {
     
-    private var raceCalendar: RaceCalendar?
+    private var raceCalendar = RaceCalendar()
     private var chatMessages = [JSQMessage]()
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
     private var updatedMessageRefHandle: DatabaseHandle?
     private let imageURLNotSetKey = "NOTSET"
+    private let locationManager = CustomLocationManager()
     
     lazy var outgoingBubble: JSQMessagesBubbleImage = {
         JSQMessagesBubbleImageFactory()!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleRed())
@@ -43,12 +44,25 @@ class ChatViewController: JSQMessagesViewController {
             }
         }
         
+        checkIfNearTrack()
         title = "F1 Chat"
         
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
         reloadChatMessages()
+    }
+    
+    private func checkIfNearTrack() {
+        raceCalendar.fetchRaces { [weak self] race in
+            let raceLocation = CLLocation(latitude: race.position.latitude, longitude: race.position.longitude)
+            print(raceLocation)
+            if let distance = self?.locationManager.getDistanceFromCurrent(location: raceLocation) {
+                if distance > 15 {
+                    self?.inputToolbar.contentView.leftBarButtonItem = nil
+                }
+            }
+        }
     }
     
     private func loadMessages() {
@@ -76,13 +90,13 @@ class ChatViewController: JSQMessagesViewController {
                 }
             }
         })
-        updatedMessageRefHandle = Constants.Refs.databaseChats.observe(.childChanged, with: { snapshot in
+        updatedMessageRefHandle = Constants.Refs.databaseChats.observe(.childChanged, with: { [weak self] snapshot in
             let key = snapshot.key
             let messageData = snapshot.value as! Dictionary<String, String>
             
             if let photoURL = messageData["photoURL"] as String! {
-                if let mediaItem = self.photoMessageMap[key] {
-                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
+                if let mediaItem = self?.photoMessageMap[key] {
+                    self?.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
                 }
             }
         })

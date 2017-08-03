@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Tifosi
+
+  Created by COBE Osijek on 03/08/2017.
+  Copyright © 2017 Daniel Pavlekovic. All rights reserved.
+*/
+
+"Unjoin" = "Odjavi se";
+"Join" = "Prijavi se";
