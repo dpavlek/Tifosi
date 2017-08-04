@@ -49,14 +49,6 @@ class EventDescriptionTableViewController: UITableViewController {
         pinPoint.coordinate = coordinates
         eventLocationMap.addAnnotation(pinPoint)
         eventLocationMap.setRegion(region, animated: true)
-        
-        if let loggedIn = FacebookUser.fbUser?.loggedIn {
-            if loggedIn == true {
-                navigationItem.rightBarButtonItem?.isEnabled = true
-            } else {
-                navigationItem.rightBarButtonItem?.isEnabled = false
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
