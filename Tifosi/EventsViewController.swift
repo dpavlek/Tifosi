@@ -41,8 +41,12 @@ class EventsViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if FBSDKAccessToken.current() != nil {
-            navigationItem.rightBarButtonItem?.isEnabled = true
+        if let facebookLoggedIn = FacebookUser.fbUser?.loggedIn {
+            if facebookLoggedIn {
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
@@ -73,10 +77,7 @@ class EventsViewController: UITableViewController {
         cell.eventName.text = eventManager.events[indexPath.row].name
         cell.eventDesc.text = eventManager.events[indexPath.row].description
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy HH:mm"
-        let dateString = formatter.string(from: eventManager.events[indexPath.row].dateTime)
-        cell.eventDate.text = dateString
+        cell.eventDate.text = Date.getCustomTimeFormatString(date: eventManager.events[indexPath.row].dateTime)
 
         if distance < 300 {
             cell.eventDistance.text = String(format: "%.0f km", distance)
@@ -103,11 +104,14 @@ class EventsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let creator = eventManager.events[indexPath.row].creatorID
         let currentUser = FacebookUser.fbUser?.eMail
-        if creator == currentUser {
-            return true
-        } else {
-            return false
+        if let facebookLoggedIn = FacebookUser.fbUser?.loggedIn {
+            if facebookLoggedIn {
+                if creator == currentUser {
+                    return true
+                }
+            }
         }
+        return false
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

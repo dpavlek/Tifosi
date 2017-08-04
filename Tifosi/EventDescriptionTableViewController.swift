@@ -30,11 +30,8 @@ class EventDescriptionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy HH:mm"
         if let date = currentEvent?.dateTime {
-            let dateString = formatter.string(from: date)
-            eventDateLabel.text = dateString
+            eventDateLabel.text = Date.getCustomTimeFormatString(date: date)
         }
         
         eventNameLabel.text = currentEvent?.name
@@ -64,12 +61,14 @@ class EventDescriptionTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if let loggedIn = FacebookUser.fbUser?.loggedIn {
-            if loggedIn == true {
+        if let facebookLoggedIn = FacebookUser.fbUser?.loggedIn {
+            if facebookLoggedIn {
                 navigationItem.rightBarButtonItem?.isEnabled = true
             } else {
                 navigationItem.rightBarButtonItem?.isEnabled = false
             }
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
         }
         
         if let key = currentEvent?.eventID {

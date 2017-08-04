@@ -69,11 +69,8 @@ class NewsViewController: UITableViewController {
         
         let article = articleArray?.articles[indexPath.row]
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy HH:mm"
         if let date = article?.date {
-            let dateString = formatter.string(from: date)
-            cell.dateLabel.text = dateString
+            cell.dateLabel.text = Date.getCustomTimeFormatString(date: date)
         }
         
         cell.titleLabel.text = article?.name

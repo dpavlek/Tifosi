@@ -67,12 +67,16 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         if error != nil {
             print(error)
             return
+        } else {
+            if didCompleteWithresult.isCancelled {
+                FacebookUser.fbUser?.loggedIn = false
+            } else {
+                print("Succesfully logged in with facebook...")
+                self.connectToFirebase()
+                FacebookUser.fbUser?.loggedIn = true
+                FacebookUser.fbUser?.setUserData()
+            }
         }
-        
-        print("Succesfully logged in with facebook...")
-        self.connectToFirebase()
-        FacebookUser.fbUser?.loggedIn = true
-        FacebookUser.fbUser?.setUserData()
     }
     
     func connectToFirebase() {

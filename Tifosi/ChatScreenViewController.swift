@@ -25,11 +25,13 @@ class ChatScreenViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
-        //MARK: postoji logged in!!
-        if FBSDKAccessToken.current() != nil {
-            if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
-                self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
-                self.startChatBtn.isEnabled = true
+
+        if let facebookLoggedIn = FacebookUser.fbUser?.loggedIn {
+            if facebookLoggedIn {
+                if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
+                    self.descLabel.text = "Welcome " + facebookUserFirstName + "!"
+                    self.startChatBtn.isEnabled = true
+                }
             } else {
                 self.startChatBtn.isEnabled = false
             }
@@ -41,6 +43,7 @@ class ChatScreenViewController: UIViewController {
 
         self.raceCalendar.fetchRaces { [weak self] race in
             let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation() ?? "CET")
             dateFormatter.dateFormat = "yyyy-MM-dd"
 
             let timeToRace = race.date.timeIntervalSince1970 - Date().timeIntervalSince1970

@@ -88,7 +88,7 @@ class EventManager {
             "date": eventDateString,
             "latitude": eventToAdd.coordinates.latitude.description,
             "longitude": eventToAdd.coordinates.longitude.description,
-            "userID": eventToAdd.creatorID,
+            "userID": FacebookUser.fbUser?.eMail,
         ]
 
         ref.setValue(message)
