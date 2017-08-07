@@ -23,6 +23,20 @@ class Fetcher {
         }
         currentTask?.resume()
     }
+    
+    func fetchImage(fromUrl url: URL, completion: @escaping ((UIImage) -> Void)){
+        let session = URLSession.shared
+        currentTask = session.dataTask(with: url){ data, _, error in
+            DispatchQueue.main.async {
+                guard error == nil, let data = data, let image = UIImage(data: data) else{
+                    return
+                }
+                completion(image)
+            }
+        }
+    }
+    
+    
     deinit {
         currentTask?.cancel()
     }

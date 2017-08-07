@@ -11,6 +11,7 @@ import UIKit
 class JoinedPeopleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private var peopleWhoJoined = EventPeopleManager()
+    private let networkFetcher = Fetcher()
 
     var currentEvent: Event?
 
@@ -41,15 +42,9 @@ class JoinedPeopleViewController: UIViewController, UITableViewDelegate, UITable
             fatalError("Cell is not JoinedPersonTableViewCell")
         }
 
-        DispatchQueue.global().async {
-            if let fbImageURL = URL(string: self.peopleWhoJoined.people[indexPath.row].photoURLString) {
-                if let fbImageData = try? Data(contentsOf: fbImageURL) {
-                    if let fbImage = UIImage(data: fbImageData) {
-                        DispatchQueue.main.async {
-                            cell.facebookImage.image = fbImage
-                        }
-                    }
-                }
+        if let fbImageURL = URL(string: self.peopleWhoJoined.people[indexPath.row].photoURLString) {
+            networkFetcher.fetchImage(fromUrl: fbImageURL) { image in
+                cell.facebookImage.image = image
             }
         }
 

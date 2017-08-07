@@ -21,29 +21,29 @@ class RaceCalendar {
     var races: [Race] = []
     
     func fetchRaces(onCompletion: @escaping ((Race) -> Void)) {
-        DispatchQueue.global().async {
-            if let data = try? Data(contentsOf: Constants.f1CalendarUrl) {
-                var json = JSON(data)
-                for (_, race) in json["MRData"]["RaceTable"]["Races"] {
-                    let season = race["season"].intValue
-                    let name = race["raceName"].stringValue
-                    let latitude = race["Circuit"]["Location"]["lat"].doubleValue
-                    let longitude = race["Circuit"]["Location"]["long"].doubleValue
-                    let dateString = race["date"].stringValue
-                    let timeString = race["time"].stringValue
-                    
-                    let dateTimeString = dateString + " " + timeString
-                    
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss'Z'"
-                    let dateFormatted = dateFormatter.date(from: dateTimeString)
-                    DispatchQueue.global().async {
-                        let currentRace = Race(season: season, raceName: name, position: (latitude: latitude, longitude: longitude), date: dateFormatted!)
-                        self.races.append(currentRace)
-                        onCompletion(currentRace)
-                    }
+        let raceFetcher = Fetcher()
+        raceFetcher.fetch(fromUrl: Constants.f1CalendarUrl) { jsonData in
+            var json = JSON(jsonData)
+            for (_, race) in json["MRData"]["RaceTable"]["Races"] {
+                let season = race["season"].intValue
+                let name = race["raceName"].stringValue
+                let latitude = race["Circuit"]["Location"]["lat"].doubleValue
+                let longitude = race["Circuit"]["Location"]["long"].doubleValue
+                let dateString = race["date"].stringValue
+                let timeString = race["time"].stringValue
+                
+                let dateTimeString = dateString + " " + timeString
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss'Z'"
+                let dateFormatted = dateFormatter.date(from: dateTimeString)
+                DispatchQueue.global().async {
+                    let currentRace = Race(season: season, raceName: name, position: (latitude: latitude, longitude: longitude), date: dateFormatted!)
+                    self.races.append(currentRace)
+                    onCompletion(currentRace)
                 }
             }
         }
+        
     }
 }
