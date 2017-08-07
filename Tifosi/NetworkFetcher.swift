@@ -11,32 +11,34 @@ import Foundation
 class Fetcher {
     var currentTask: URLSessionTask?
 
-    func fetch(fromUrl url: URL, completion: @escaping (([String: Any]) -> Void)) {
+    func fetch(fromUrl url: URL, completion: @escaping (([String: Any]?, Error?) -> Void)) {
         let session = URLSession.shared
         currentTask = session.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
                 guard error == nil, let data = data, let parsedData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                    completion(nil, error)
                     return
                 }
-                completion(parsedData!)
+                completion(parsedData, nil)
             }
         }
         currentTask?.resume()
     }
-    
-    func fetchImage(fromUrl url: URL, completion: @escaping ((UIImage) -> Void)){
+
+    func fetchImage(fromUrl url: URL, completion: @escaping ((UIImage?, Error?) -> Void)) {
         let session = URLSession.shared
-        currentTask = session.dataTask(with: url){ data, _, error in
+        currentTask = session.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
-                guard error == nil, let data = data, let image = UIImage(data: data) else{
+                guard error == nil, let data = data, let image = UIImage(data: data) else {
+                    completion(nil, error)
                     return
                 }
-                completion(image)
+                completion(image, nil)
             }
         }
+        currentTask?.resume()
     }
-    
-    
+
     deinit {
         currentTask?.cancel()
     }

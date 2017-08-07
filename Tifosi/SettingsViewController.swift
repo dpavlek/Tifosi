@@ -50,19 +50,19 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
                                                   multiplier: 1,
                                                   constant: 50)
         
-        self.view.addConstraints([trailingConstraint, leadingConstraint])
+        view.addConstraints([trailingConstraint, leadingConstraint])
         view.addConstraints([topConstraint, heightConstraint])
         
         loginButton.delegate = self
         loginButton.readPermissions = ["email", "public_profile"]
     }
     
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+    internal func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("Did log out of facebook")
         FacebookUser.fbUser?.loggedIn = false
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith didCompleteWithresult: FBSDKLoginManagerLoginResult!, error: Error!) {
+    internal func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith didCompleteWithresult: FBSDKLoginManagerLoginResult!, error: Error!) {
         
         if error != nil {
             print(error)
@@ -79,7 +79,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
     
-    func connectToFirebase() {
+    private func connectToFirebase() {
         let accessToken = FBSDKAccessToken.current()
         guard let accessTokenString = accessToken?.tokenString else { return }
         

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FBSDKLoginKit
 
-class EventsViewController: UITableViewController {
+class EventsViewController: UITableViewController, UIViewControllerPreviewingDelegate {
 
     private let eventManager = EventManager()
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
@@ -18,6 +18,10 @@ class EventsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
 
         activityIndicator.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 3)
         activityIndicator.color = UIColor.red
@@ -97,6 +101,7 @@ class EventsViewController: UITableViewController {
                 let controller = segue.destination as! EventDescriptionTableViewController
                 let event = eventManager.events[indexPath.row]
                 controller.currentEvent = event
+                tableView.deselectRow(at: indexPath, animated: true)
             }
         }
     }
@@ -121,5 +126,22 @@ class EventsViewController: UITableViewController {
                 self?.tableView.reloadData()
             })
         }
+    }
+
+    @available(iOS 9.0, *)
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "eventDescription") as? EventDescriptionTableViewController else { return nil }
+
+        detailVC.currentEvent = eventManager.events[indexPath.row]
+
+        detailVC.preferredContentSize = CGSize(width: 0.0, height: view.bounds.size.height*0.825)
+
+        return detailVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }

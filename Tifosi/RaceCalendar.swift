@@ -19,11 +19,15 @@ struct Race {
 class RaceCalendar {
     
     var races: [Race] = []
+    private let raceFetcher = Fetcher()
     
     func fetchRaces(onCompletion: @escaping ((Race) -> Void)) {
-        let raceFetcher = Fetcher()
-        raceFetcher.fetch(fromUrl: Constants.f1CalendarUrl) { jsonData in
-            var json = JSON(jsonData)
+        raceFetcher.fetch(fromUrl: Constants.f1CalendarUrl) { jsonData, error in
+            guard error == nil else {
+                print("Race fetching error:" + error.debugDescription)
+                return
+            }
+            let json = JSON(jsonData!)
             for (_, race) in json["MRData"]["RaceTable"]["Races"] {
                 let season = race["season"].intValue
                 let name = race["raceName"].stringValue
@@ -45,5 +49,16 @@ class RaceCalendar {
             }
         }
         
+    }
+    
+    func checkForRaceDate(race: Race) -> Bool {
+        
+        let timeToRace = race.date.timeIntervalSince1970 - Date().timeIntervalSince1970
+        
+        if (timeToRace < Constants.threeDaysInSeconds) && (timeToRace > 0) {
+            return true
+        } else {
+            return false
+        }
     }
 }

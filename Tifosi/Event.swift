@@ -151,18 +151,11 @@ class EventPeopleManager {
 
     func removeFromEvent(eventID: String, onCompletion: @escaping ((Bool) -> Void)) {
         if let userID = FacebookUser.fbUser?.userID {
-            _ = Constants.Refs.databaseGuests.child(eventID).child(userID).removeValue(completionBlock: { [weak self] Error, _ in
+            _ = Constants.Refs.databaseGuests.child(eventID).child(userID).removeValue(completionBlock: { Error, _ in
                 if Error != nil {
                     onCompletion(false)
                 } else {
-                    if let people = self?.people.enumerated() {
-                        for (index, person) in people {
-                            if person.personID == userID {
-                                self?.people.remove(at: index)
-                            }
-                        }
-                        onCompletion(true)
-                    }
+                    onCompletion(true)
                 }
             })
         }

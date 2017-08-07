@@ -43,7 +43,11 @@ class JoinedPeopleViewController: UIViewController, UITableViewDelegate, UITable
         }
 
         if let fbImageURL = URL(string: self.peopleWhoJoined.people[indexPath.row].photoURLString) {
-            networkFetcher.fetchImage(fromUrl: fbImageURL) { image in
+            networkFetcher.fetchImage(fromUrl: fbImageURL) { image, error in
+                guard error == nil else {
+                    print(error.debugDescription)
+                    return
+                }
                 cell.facebookImage.image = image
             }
         }

@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 
-class NewsViewController: UITableViewController {
+class NewsViewController: UITableViewController, UIViewControllerPreviewingDelegate {
     
     private var articleArray: Articles?
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
@@ -22,6 +22,10 @@ class NewsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
         
         activityIndicator.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 3)
         activityIndicator.color = UIColor.red
@@ -49,12 +53,16 @@ class NewsViewController: UITableViewController {
     }
     
     func loadData(urlToLoad: URL) {
-        fetcher.fetch(fromUrl: urlToLoad) { [weak self] jsonData in
-            self?.articleArray = Articles(json: jsonData)
-            self?.tableView.reloadData()
-            self?.refreshControl?.endRefreshing()
-            self?.activityIndicator.stopAnimating()
-            self?.tableView.separatorColor = UIColor.lightGray
+        fetcher.fetch(fromUrl: urlToLoad) { [weak self] jsonData, error in
+            if jsonData != nil {
+                self?.articleArray = Articles(json: jsonData!)
+                self?.tableView.reloadData()
+                self?.refreshControl?.endRefreshing()
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.separatorColor = UIColor.lightGray
+            } else if error != nil {
+                print("Fetching error: " + error.debugDescription)
+            }
         }
     }
     
@@ -89,5 +97,25 @@ class NewsViewController: UITableViewController {
                 controller.webPageURL = articleUrl
             }
         }
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "articleInTheNews") as? WebPageViewController else { return nil }
+        
+        if let webPageURLString = articleArray?.articles[indexPath.row].link {
+            if let webPageUrl = URL(string: webPageURLString) {
+                detailVC.webPageURL = webPageUrl
+            }
+        }
+        
+        detailVC.preferredContentSize = CGSize(width: 0.0, height: view.bounds.size.height)
+        
+        return detailVC
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
