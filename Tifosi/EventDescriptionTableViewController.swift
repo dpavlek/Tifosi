@@ -22,8 +22,8 @@ class EventDescriptionTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showJoinedPeople" {
-            let joinedViewController = segue.destination as! JoinedPeopleViewController
-            joinedViewController.currentEvent = currentEvent
+            let joinedViewController = segue.destination as? JoinedPeopleViewController
+            joinedViewController?.currentEvent = currentEvent
         }
     }
     

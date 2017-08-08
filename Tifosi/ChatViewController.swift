@@ -94,9 +94,9 @@ class ChatViewController: JSQMessagesViewController {
         })
         updatedMessageRefHandle = Constants.Refs.databaseChats.observe(.childChanged, with: { [weak self] snapshot in
             let key = snapshot.key
-            let messageData = snapshot.value as! Dictionary<String, String>
+            let messageData = snapshot.value as? [String: String]
             
-            if let photoURL = messageData["photoURL"] as String! {
+            if let photoURL = messageData?["photoURL"] as String! {
                 if let mediaItem = self?.photoMessageMap[key] {
                     self?.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
                 }
@@ -136,7 +136,7 @@ class ChatViewController: JSQMessagesViewController {
         let message = [
             "sender_id": senderId,
             "name": senderDisplayName,
-            "text": text,
+            "text": text
         ]
         
         ref.setValue(message)
@@ -148,7 +148,7 @@ class ChatViewController: JSQMessagesViewController {
         
         let messageItem = [
             "photoURL": imageURLNotSetKey,
-            "senderID": senderId,
+            "senderID": senderId
         ]
         
         itemRef.setValue(messageItem)
@@ -239,9 +239,9 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         //            }
         //        }
         
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        if let key = sendPhotoMessage() {
+        if let key = sendPhotoMessage(), let image = image {
             let imageData = UIImageJPEGRepresentation(image, 0.05)
             
             let imagePath = Auth.auth().currentUser!.uid + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
@@ -249,12 +249,12 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
-            Constants.Refs.storage.child(imagePath).putData(imageData!, metadata: metadata) { metadata, error in
+            Constants.Refs.storage.child(imagePath).putData(imageData!, metadata: metadata) { [weak self] metadata, error in
                 if let error = error {
                     print("Error uploading photo: \(error)")
                     return
                 }
-                self.setImageUrl(Constants.Refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+                self?.setImageUrl(Constants.Refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
             }
         }
     }

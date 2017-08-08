@@ -58,10 +58,8 @@ class EventManager {
                 onCompletion(false)
             } else {
                 if let events = self?.events.enumerated() {
-                    for (index, event) in events {
-                        if event.eventID == eventID {
+                    for (index, event) in events where event.eventID == eventID{
                             self?.events.remove(at: index)
-                        }
                     }
                 }
                 onCompletion(true)
@@ -88,7 +86,7 @@ class EventManager {
             "date": eventDateString,
             "latitude": eventToAdd.coordinates.latitude.description,
             "longitude": eventToAdd.coordinates.longitude.description,
-            "userID": FacebookUser.fbUser?.eMail,
+            "userID": FacebookUser.fbUser?.eMail
         ]
 
         ref.setValue(message)
@@ -142,7 +140,7 @@ class EventPeopleManager {
                 "userEmail": FacebookUser.fbUser?.eMail,
                 "userName": FacebookUser.fbUser?.firstName,
                 "userSurname": FacebookUser.fbUser?.lastName,
-                "userPhotoURL": FacebookUser.fbUser?.userPhotoURL,
+                "userPhotoURL": FacebookUser.fbUser?.userPhotoURL
             ]
 
             ref.setValue(message)

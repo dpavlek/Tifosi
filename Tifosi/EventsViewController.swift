@@ -35,12 +35,14 @@ class EventsViewController: UITableViewController, UIViewControllerPreviewingDel
 
         tableView.dataSource = self
         tableView.delegate = self
+        
         eventManager.getEvents { [weak self] _ in
             self?.tableView.separatorColor = UIColor.lightGray
             self?.tableView.reloadData()
             self?.activityIndicator.stopAnimating()
             self?.locationManager.stopUpdatingLocation()
         }
+        
         tableView.reloadData()
     }
 
@@ -98,9 +100,9 @@ class EventsViewController: UITableViewController, UIViewControllerPreviewingDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEventDescription" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let controller = segue.destination as! EventDescriptionTableViewController
+                let controller = segue.destination as? EventDescriptionTableViewController
                 let event = eventManager.events[indexPath.row]
-                controller.currentEvent = event
+                controller?.currentEvent = event
                 tableView.deselectRow(at: indexPath, animated: true)
             }
         }

@@ -16,8 +16,6 @@ class NewsViewController: UITableViewController, UIViewControllerPreviewingDeleg
     
     // private var eName = String()
     
-    private let url = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.autosport.com%2Frss%2Ffeed%2Ff1")!
-    private let backupURL = URL(string: "https://hmpg.net")!
     private let fetcher = Fetcher()
     
     override func viewDidLoad() {
@@ -45,11 +43,11 @@ class NewsViewController: UITableViewController, UIViewControllerPreviewingDeleg
         tableView.dataSource = self
         tableView.delegate = self
         refreshControl?.addTarget(self, action: #selector(NewsViewController.refreshTable(refreshControl:)), for: UIControlEvents.valueChanged)
-        loadData(urlToLoad: url)
+        loadData(urlToLoad: Constants.RSSAutosportUrl)
     }
     
     func refreshTable(refreshControl: UIRefreshControl) {
-        loadData(urlToLoad: url)
+        loadData(urlToLoad: Constants.RSSAutosportUrl)
     }
     
     func loadData(urlToLoad: URL) {
@@ -90,11 +88,11 @@ class NewsViewController: UITableViewController, UIViewControllerPreviewingDeleg
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWebPageSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let controller = segue.destination as! WebPageViewController
+                let controller = segue.destination as? WebPageViewController
                 
                 let articleUrlString = articleArray?.articles[indexPath.row].link
                 let articleUrl = URL(string: articleUrlString!)
-                controller.webPageURL = articleUrl
+                controller?.webPageURL = articleUrl
             }
         }
     }

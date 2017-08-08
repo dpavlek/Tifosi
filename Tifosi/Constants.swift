@@ -21,4 +21,6 @@ struct Constants {
 
     static let f1CalendarUrl = URL(string: "https://ergast.com/api/f1/current.json")!
     static let threeDaysInSeconds: Double = 259200
+    static let RSSAutosportUrl = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.autosport.com%2Frss%2Ffeed%2Ff1")!
+    static let backupURL = URL(string: "https://hmpg.net")!
 }

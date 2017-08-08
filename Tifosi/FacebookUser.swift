@@ -31,18 +31,18 @@ class FacebookUser {
     }
 
     func setUserData() {
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id,first_name, last_name,picture.type(large),email"]).start { _, result, err in
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id,first_name, last_name,picture.type(large),email"]).start { [weak self] _, result, err in
             if err != nil {
                 print("failed to start graph request:", err ?? "Unknown error")
                 return
             }
             let userInfo = result as? NSDictionary
             let userPhotoURLtemp = "http://graph.facebook.com/\(userInfo?["id"] as? String ?? "4")/picture?type=large"
-            self.firstName = userInfo?["first_name"] as? String
-            self.lastName = userInfo?["last_name"] as? String
-            self.eMail = userInfo?["email"] as? String
-            self.userPhotoURL = userPhotoURLtemp
-            self.userID = (userInfo?["id"] as? String)!
+            self?.firstName = userInfo?["first_name"] as? String
+            self?.lastName = userInfo?["last_name"] as? String
+            self?.eMail = userInfo?["email"] as? String
+            self?.userPhotoURL = userPhotoURLtemp
+            self?.userID = (userInfo?["id"] as? String)!
             print("Logged in to Facebook!")
         }
     }

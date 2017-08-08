@@ -73,8 +73,8 @@ class ChatScreenViewController: UIViewController {
 
     func loadRaces() {
         self.raceCalendar.fetchRaces { [weak self] race in
-            self?.checkRaceDate(race: race)
             self?.checkFacebookLogin()
+            self?.checkRaceDate(race: race)
             self?.activityIndicator.stopAnimating()
             self?.startChatBtn.isHidden = false
         }

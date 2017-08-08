@@ -22,7 +22,7 @@ class RaceCalendar {
     private let raceFetcher = Fetcher()
     
     func fetchRaces(onCompletion: @escaping ((Race) -> Void)) {
-        raceFetcher.fetch(fromUrl: Constants.f1CalendarUrl) { jsonData, error in
+        raceFetcher.fetch(fromUrl: Constants.f1CalendarUrl) { [weak self] jsonData, error in
             guard error == nil else {
                 print("Race fetching error:" + error.debugDescription)
                 return
@@ -43,7 +43,7 @@ class RaceCalendar {
                 let dateFormatted = dateFormatter.date(from: dateTimeString)
                 DispatchQueue.global().async {
                     let currentRace = Race(season: season, raceName: name, position: (latitude: latitude, longitude: longitude), date: dateFormatted!)
-                    self.races.append(currentRace)
+                    self?.races.append(currentRace)
                     onCompletion(currentRace)
                 }
             }

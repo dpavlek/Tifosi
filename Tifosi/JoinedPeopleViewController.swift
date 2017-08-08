@@ -23,8 +23,8 @@ class JoinedPeopleViewController: UIViewController, UITableViewDelegate, UITable
         joinedPeopleTableView.delegate = self
         joinedPeopleTableView.dataSource = self
 
-        peopleWhoJoined.getPeople(key: (currentEvent?.eventID)!) { _ in
-            self.joinedPeopleTableView.reloadData()
+        peopleWhoJoined.getPeople(key: (currentEvent?.eventID)!) { [weak self] _ in
+            self?.joinedPeopleTableView.reloadData()
         }
     }
 
