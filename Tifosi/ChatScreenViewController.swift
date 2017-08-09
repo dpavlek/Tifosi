@@ -30,8 +30,9 @@ class ChatScreenViewController: UIViewController {
         self.activityIndicator.hidesWhenStopped = true
         view.addSubview(self.activityIndicator)
         self.activityIndicator.startAnimating()
-        self.loadRaces()
-        //testMode()
+        // self.loadRaces()
+
+        self.testMode()
     }
 
     func testMode() {
@@ -72,8 +73,8 @@ class ChatScreenViewController: UIViewController {
     }
 
     func loadRaces() {
+        self.checkFacebookLogin()
         self.raceCalendar.fetchRaces { [weak self] race in
-            self?.checkFacebookLogin()
             self?.checkRaceDate(race: race)
             self?.activityIndicator.stopAnimating()
             self?.startChatBtn.isHidden = false

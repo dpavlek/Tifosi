@@ -35,14 +35,14 @@ class EventsViewController: UITableViewController, UIViewControllerPreviewingDel
 
         tableView.dataSource = self
         tableView.delegate = self
-        
+
         eventManager.getEvents { [weak self] _ in
             self?.tableView.separatorColor = UIColor.lightGray
             self?.tableView.reloadData()
             self?.activityIndicator.stopAnimating()
             self?.locationManager.stopUpdatingLocation()
         }
-        
+
         tableView.reloadData()
     }
 
@@ -138,7 +138,7 @@ class EventsViewController: UITableViewController, UIViewControllerPreviewingDel
 
         detailVC.currentEvent = eventManager.events[indexPath.row]
 
-        detailVC.preferredContentSize = CGSize(width: 0.0, height: view.bounds.size.height*0.825)
+        detailVC.preferredContentSize = CGSize(width: 0.0, height: view.bounds.size.height * 0.825)
 
         return detailVC
     }

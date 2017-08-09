@@ -14,11 +14,8 @@ import Firebase
 
 class ChatViewController: JSQMessagesViewController {
     
-    private var raceCalendar = RaceCalendar()
-    private var chatMessages = [JSQMessage]()
-    private var photoMessageMap = [String: JSQPhotoMediaItem]()
-    private var updatedMessageRefHandle: DatabaseHandle?
-    private let imageURLNotSetKey = "NOTSET"
+    private let chatObject = Chat()
+    private let raceCalendar = RaceCalendar()
     private let locationManager = CustomLocationManager()
     
     lazy var outgoingBubble: JSQMessagesBubbleImage = {
@@ -28,11 +25,6 @@ class ChatViewController: JSQMessagesViewController {
     lazy var incomingBubble: JSQMessagesBubbleImage = {
         JSQMessagesBubbleImageFactory()!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }()
-    
-    private func reloadChatMessages() {
-        chatMessages = []
-        loadMessages()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +42,9 @@ class ChatViewController: JSQMessagesViewController {
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
-        reloadChatMessages()
+        chatObject.loadMessages(senderID: senderId) { [weak self] _ in
+            self?.finishReceivingMessage()
+        }
     }
     
     private func checkIfNearTrack() {
@@ -67,54 +61,16 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
-    private func loadMessages() {
-        
-        let query = Constants.Refs.databaseChats.queryLimited(toLast: 30)
-        
-        _ = query.observe(.childAdded, with: { [weak self] snapshot in
-            if let data = snapshot.value as? [String: String] {
-                if let id = data["sender_id"],
-                    let name = data["name"],
-                    let text = data["text"],
-                    !text.isEmpty {
-                    if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-                        self?.chatMessages.append(message)
-                        self?.finishReceivingMessage()
-                    }
-                } else if let id = data["senderID"],
-                    let photoURL = data["photoURL"] {
-                    if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self?.senderId) {
-                        self?.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
-                        if photoURL.hasPrefix("gs://") {
-                            self?.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
-                        }
-                    }
-                }
-            }
-        })
-        updatedMessageRefHandle = Constants.Refs.databaseChats.observe(.childChanged, with: { [weak self] snapshot in
-            let key = snapshot.key
-            let messageData = snapshot.value as? [String: String]
-            
-            if let photoURL = messageData?["photoURL"] as String! {
-                if let mediaItem = self?.photoMessageMap[key] {
-                    self?.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
-                }
-            }
-        })
-    }
-    
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
-        return chatMessages[indexPath.item]
+        return chatObject.returnMessages()[indexPath.item]
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return chatMessages.count
+        return chatObject.returnMessages().count
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        return chatMessages[indexPath.item].senderId == senderId ? outgoingBubble : incomingBubble
-        
+        return chatObject.returnMessages()[indexPath.item].senderId == senderId ? outgoingBubble : incomingBubble
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
@@ -122,41 +78,27 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
-        return chatMessages[indexPath.item].senderId == senderId ? nil : NSAttributedString(string: chatMessages[indexPath.item].senderDisplayName)
+        return chatObject.returnMessages()[indexPath.item].senderId == senderId ? nil : NSAttributedString(string: chatObject.returnMessages()[indexPath.item].senderDisplayName)
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        return chatMessages[indexPath.item].senderId == senderId ? 0 : 15
+        return chatObject.returnMessages()[indexPath.item].senderId == senderId ? 0 : 15
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        let ref = Constants.Refs.databaseChats.childByAutoId()
-        
-        let message = [
-            "sender_id": senderId,
-            "name": senderDisplayName,
-            "text": text
-        ]
-        
-        ref.setValue(message)
+        chatObject.sendMessage(senderID: senderId, displayName: senderDisplayName, text: text)
         finishSendingMessage()
     }
     
     func sendPhotoMessage() -> String? {
-        let itemRef = Constants.Refs.databaseChats.childByAutoId()
         
-        let messageItem = [
-            "photoURL": imageURLNotSetKey,
-            "senderID": senderId
-        ]
-        
-        itemRef.setValue(messageItem)
+        let refKey = chatObject.sendPhotoMessage(senderID: senderId)
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         finishSendingMessage(animated: true)
-        return itemRef.key
+        return refKey
     }
     
     func setImageUrl(_ url: String, forPhotoMessageWithKey key: String) {
@@ -174,40 +116,14 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
-        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
-            chatMessages.append(message)
-            
-            if mediaItem.image == nil {
-                photoMessageMap[key] = mediaItem
-            }
-            
-            collectionView.reloadData()
+        chatObject.addPhotoMessage(withId: id, displayName: "", mediaItem: mediaItem, key: key) { [weak self] _ in
+            self?.collectionView.reloadData()
         }
     }
     
     private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
-        let storageRef = Storage.storage().reference(forURL: photoURL)
-        
-        storageRef.getData(maxSize: INT64_MAX) { data, error in
-            if let error = error {
-                print("Error downloading image data: \(error)")
-                return
-            }
-            
-            storageRef.getMetadata(completion: { _, metadataErr in
-                if let error = metadataErr {
-                    print("Error downloading metadata: \(error)")
-                    return
-                }
-                
-                mediaItem.image = UIImage(data: data!)
-                self.collectionView.reloadData()
-                
-                guard key != nil else {
-                    return
-                }
-                self.photoMessageMap.removeValue(forKey: key!)
-            })
+        chatObject.fetchImageData(photoURL: photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key) { [weak self] _ in
+            self?.collectionView.reloadData()
         }
     }
 }
@@ -215,29 +131,6 @@ class ChatViewController: JSQMessagesViewController {
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         picker.dismiss(animated: true, completion: nil)
-        
-        //        MARK: Code for loading from local phone storage. Not used right now.
-        //        if let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL{
-        //            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
-        //            let asset = assets.firstObject
-        //
-        //            if let key = sendPhotoMessage(){
-        //                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
-        //                    let imageFileUrl = contentEditingInput?.fullSizeImageURL
-        //                    //TO-DO: Check "describing"
-        //                    let path = "\(String(describing: Auth.auth().currentUser?.uid))/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
-        //
-        //                    Constants.refs.storage.child(path).putFile(from: imageFileUrl!, metadata: nil){ (metadata,error) in
-        //                        if let error = error{
-        //                            print("Error uploading photo: \(error.localizedDescription)")
-        //                            return
-        //                        }
-        //
-        //                        self.setImageUrl(Constants.refs.storage.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
-        //                    }
-        //                })
-        //            }
-        //        }
         
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
