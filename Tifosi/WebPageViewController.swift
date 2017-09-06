@@ -9,9 +9,9 @@
 import UIKit
 
 class WebPageViewController: UIViewController {
-
+    
     var webPageURL: URL?
-
+    
     @IBOutlet weak var rssWebView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,5 +20,15 @@ class WebPageViewController: UIViewController {
             rssWebView.loadRequest(webPageRequest)
         }
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        self.rssWebView.reload()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.isMovingFromParentViewController {
+            self.rssWebView.loadHTMLString("", baseURL: nil)
+        }
+    }
 }

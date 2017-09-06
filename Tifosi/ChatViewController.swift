@@ -2,7 +2,7 @@
 //  ChatViewController.swift
 //  Tifosi
 //
-//  Created by COBE Osijek on 27/07/2017.
+//  Created by Daniel Pavlekovic on 27/07/2017.
 //  Copyright © 2017 Daniel Pavlekovic. All rights reserved.
 //
 
@@ -36,7 +36,16 @@ class ChatViewController: JSQMessagesViewController {
             }
         }
         
-        checkIfNearTrack()
+        self.inputToolbar.contentView.leftBarButtonItem.isEnabled = false
+        
+        checkIfNearTrack { [weak self] userIsNear in
+            if userIsNear == true {
+                DispatchQueue.main.async {
+                    print(self?.inputToolbar.contentView.leftBarButtonItem as Any)
+                    self?.inputToolbar.contentView.leftBarButtonItem.isEnabled = true
+                }
+            }
+        }
         title = "F1 Chat"
         
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
@@ -47,16 +56,16 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
-    private func checkIfNearTrack() {
+    private func checkIfNearTrack(onCompletion: @escaping ((Bool) -> Void)) {
+        var userIsNearTrack: Bool = false
         raceCalendar.fetchRaces { [weak self] race in
             let raceLocation = CLLocation(latitude: race.position.latitude, longitude: race.position.longitude)
             if let distance = self?.locationManager.getDistanceFromCurrent(location: raceLocation) {
-                if distance > 15 {
-                    DispatchQueue.main.async {
-                        self?.inputToolbar.contentView.leftBarButtonItem = nil
-                    }
+                if distance < 15 {
+                    userIsNearTrack = true
                 }
             }
+            onCompletion(userIsNearTrack)
             self?.locationManager.stopUpdatingLocation()
         }
     }

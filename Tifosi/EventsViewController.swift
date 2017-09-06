@@ -88,7 +88,7 @@ class EventsViewController: UITableViewController, UIViewControllerPreviewingDel
         if distance < 300 {
             cell.eventDistance.text = String(format: "%.0f km", distance)
         } else {
-            cell.eventDistance.text = "Too far"
+            cell.eventDistance.text = NSLocalizedString("TooFar", comment: "")
         }
 
         return cell

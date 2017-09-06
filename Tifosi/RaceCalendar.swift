@@ -55,7 +55,7 @@ class RaceCalendar {
         
         let timeToRace = race.date.timeIntervalSince1970 - Date().timeIntervalSince1970
         
-        if (timeToRace < Constants.threeDaysInSeconds) && (timeToRace > 0) {
+        if (timeToRace < Constants.threeDaysInSeconds) && (timeToRace > -Constants.twelveHoursInSeconds) {
             return true
         } else {
             return false
