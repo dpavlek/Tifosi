@@ -261,7 +261,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8PX-2U-JLy" id="w4f-Xr-nmD">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sc-Af-HOh">
@@ -290,10 +290,10 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xec-qR-nbR">
-                                            <rect key="frame" x="237" y="68.5" width="50" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX km" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xec-qR-nbR">
+                                            <rect key="frame" x="222" y="69" width="65" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="50" id="45t-7B-aXX"/>
+                                                <constraint firstAttribute="width" constant="65" id="45t-7B-aXX"/>
                                                 <constraint firstAttribute="height" constant="21" id="IWl-bY-fmm"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -301,10 +301,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DD-MM-YYYY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYp-WC-a9p">
-                                            <rect key="frame" x="99" y="68" width="130" height="21"/>
+                                            <rect key="frame" x="99" y="68" width="115" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="62z-7P-Q46"/>
-                                                <constraint firstAttribute="width" constant="130" id="OKO-8h-uUN"/>
+                                                <constraint firstAttribute="width" constant="115" id="OKO-8h-uUN"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -314,7 +314,7 @@
                                     <constraints>
                                         <constraint firstItem="YPf-tV-6Wd" firstAttribute="top" secondItem="wbg-RK-ocv" secondAttribute="bottom" constant="8" id="2cS-Jr-aSM"/>
                                         <constraint firstItem="eYp-WC-a9p" firstAttribute="leading" secondItem="4sc-Af-HOh" secondAttribute="trailing" constant="8" id="3c3-ig-hnf"/>
-                                        <constraint firstAttribute="bottom" secondItem="eYp-WC-a9p" secondAttribute="bottom" id="5XE-Xp-X4Z"/>
+                                        <constraint firstAttribute="bottom" secondItem="eYp-WC-a9p" secondAttribute="bottom" constant="1" id="5XE-Xp-X4Z"/>
                                         <constraint firstAttribute="trailing" secondItem="Xec-qR-nbR" secondAttribute="trailing" id="AJ2-Jd-Gja"/>
                                         <constraint firstAttribute="bottom" secondItem="4sc-Af-HOh" secondAttribute="bottom" id="PFZ-lE-VSV"/>
                                         <constraint firstItem="4sc-Af-HOh" firstAttribute="top" secondItem="w4f-Xr-nmD" secondAttribute="top" id="WKm-uE-BDi"/>

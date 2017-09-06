@@ -19,7 +19,7 @@ struct Constants {
         static let storage = Storage.storage().reference(forURL: "gs://tifosi-a5cbe.appspot.com/")
     }
 
-    static let f1CalendarUrl = URL(string: "https://ergast.com/api/f1/current.json")!
+    static let f1CalendarUrl = URL(string: "http://ergast.com/api/f1/current.json")!
     static let threeDaysInSeconds: Double = 259200
     static let twelveHoursInSeconds: Double = 43200
     static let RSSAutosportUrl = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.autosport.com%2Frss%2Ffeed%2Ff1")!
