@@ -17,17 +17,18 @@ class ChatScreenViewController: UIViewController {
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var startChatBtn: UIButton!
     
+    var raceIsNear: Bool = false
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         self.startChatBtn.isEnabled = false
-        
-        if self.checkFacebookLogin() {
-            self.loadRaces()
+        self.loadRaces { success in
+            if success {
+                self.checkFacebookLogin()
+            }
         }
-        
-        //self.testMode()
     }
     
     func testMode() {
@@ -35,42 +36,83 @@ class ChatScreenViewController: UIViewController {
         self.startChatBtn.isEnabled = true
     }
     
+//    fileprivate func changeInterfaceBasedOnFacebookLogin() {
+//        self.checkFacebookLogin { [weak self] userName in
+//            if userName == nil {
+//                DispatchQueue.main.async {
+//                    self?.descLabel.text = NSLocalizedString("VelkoM", comment: "") + "!"
+//                    self?.startChatBtn.isEnabled = false
+//                }
+//            } else if raceIsNear {
+//                if let unwrappedUserName = userName {
+//                    DispatchQueue.main.async {
+//                        self?.descLabel.text = NSLocalizedString("VelkoM", comment: "") + " " + unwrappedUserName + "!"
+//                        self?.startChatBtn.isEnabled = true
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.loadRaces { success in
+            if success {
+                self.checkFacebookLogin()
+            }
+        }
+        //self.testMode()
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
     }
     
-    func checkFacebookLogin() -> Bool {
+    func checkFacebookLogin() {
         if let facebookLoggedIn = FacebookUser.fbUser?.loggedIn {
             if facebookLoggedIn {
                 if let facebookUserFirstName = FacebookUser.fbUser?.firstName {
-                    self.descLabel.text = NSLocalizedString("VelkoM", comment: "") + " " + facebookUserFirstName + "!"
-                    self.startChatBtn.isEnabled = true
-                    return true
+                    DispatchQueue.main.async {
+                        self.descLabel.text = NSLocalizedString("VelkoM", comment: "") + " " + facebookUserFirstName + "!"
+                        self.startChatBtn.isEnabled = true
+                    }
                 }
             } else {
-                self.startChatBtn.isEnabled = false
-                return false
+                DispatchQueue.main.async {
+                    self.descLabel.text = NSLocalizedString("VelkoM", comment: "") + "!"
+                    self.startChatBtn.isEnabled = false
+                }
             }
         }
-        return false
     }
     
-    func loadRaces() {
+    func loadRaces(onCompletion: @escaping (Bool) -> Void) {
         self.startChatBtn.isEnabled = false
         self.chatLabel.text = NSLocalizedString("SessionNotInProgress", comment: "")
         
         self.raceCalendar.fetchRaces { [weak self] race in
-            self?.checkRaceDate(race: race)
-            self?.startChatBtn.isHidden = false
+            self?.checkRaceDate(race: race) { success in
+                if success {
+                    onCompletion(true)
+                } else {
+                    onCompletion(false)
+                }
+            }
+            DispatchQueue.main.async {
+                self?.startChatBtn.isHidden = false
+            }
         }
     }
     
-    func checkRaceDate(race: Race) {
+    func checkRaceDate(race: Race, onCompletion: ((Bool) -> Void)) {
         if self.raceCalendar.checkForRaceDate(race: race) {
             DispatchQueue.main.async {
-                self.startChatBtn.isEnabled = true
+                // self.startChatBtn.isEnabled = true
                 self.chatLabel.text = race.raceName
             }
+            onCompletion(true)
+        } else {
+            onCompletion(false)
         }
     }
 }

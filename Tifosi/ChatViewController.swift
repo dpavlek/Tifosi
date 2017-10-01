@@ -36,7 +36,7 @@ class ChatViewController: JSQMessagesViewController {
             }
         }
         
-        self.inputToolbar.contentView.leftBarButtonItem.isEnabled = false
+        self.inputToolbar.contentView.leftBarButtonItem.isEnabled = true
         
         checkIfNearTrack { [weak self] userIsNear in
             if userIsNear == true {

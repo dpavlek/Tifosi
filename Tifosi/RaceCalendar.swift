@@ -54,6 +54,7 @@ class RaceCalendar {
     func checkForRaceDate(race: Race) -> Bool {
         
         let timeToRace = race.date.timeIntervalSince1970 - Date().timeIntervalSince1970
+        print(timeToRace)
         
         if (timeToRace < Constants.threeDaysInSeconds) && (timeToRace > -Constants.twelveHoursInSeconds) {
             return true
